@@ -17,7 +17,7 @@
     <div class="container mt-3">
         <h1 class="text-center">Insert Categories</h1>
         <!--Form-->
-        <form action="" method="post" enctype="multipart/form-data" id="cat_image">
+        <form action="/Grocery/app/category/insert.php" method="post" enctype="multipart/form-data" id="cat_image">
             <div class="form-outline mb-4 w-50 m-auto">
                 <!--Insert - Category-->
                 <input type="text" name="cat_title" id="cat_title" class="form-control" placeholder="Enter category"
