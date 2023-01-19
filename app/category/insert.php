@@ -2,7 +2,9 @@
 include('D:/xampp/htdocs/Grocery/database/connection.php');
 if (isset($_POST['insert_cart'])) {
     $category_title = $_POST['cat_title'];
-    $category_image = $_FILES['cat_image']['name'];
+    $category_image = $_POST['cat_image'];
+
+  
     // if ($_FILES['$cat_image']["name"] > 0) {
     //     echo "dd";
     // }

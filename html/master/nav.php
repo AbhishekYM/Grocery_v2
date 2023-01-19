@@ -9,7 +9,7 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
 	<link rel="stylesheet" type="text/css" href="/Grocery/css/style.css">
 	<!--Code for linking css file-->
 	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+	<link rel="icon" type="image/x-icon" class="fa fa-shopping-basket" href="">
 <!--Header Section-->
 <header class="header">
 		<a href="/Grocery/#" class="logo"><i class="fa fa-shopping-basket" aria-hidden="true"></i>grocery</a>
@@ -71,7 +71,7 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
 			<input type="email" class="box" placeholder=" your email">
 			<input type="password" class="box" placeholder=" your password">
 			<p>Forget Your password <a href="">Click Here</a></p>
-			<p>Dont Have An Account <a href="">Create Now</a></p>
+			<p>Dont Have An Account <a href="/Grocery/app/user/signup.php">Create Now</a></p>
 
 			<input type="submit" value="Login Now" class="btn ">
 		</form>

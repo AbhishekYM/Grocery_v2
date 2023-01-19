@@ -38,6 +38,10 @@
                     <a class="text">Total orders</a>
                     <span class="number">1000</span>
                 </div>
+                </div>
+                <br>
+                
+                <div class="boxes">
                 <div class="box box3">
                     <span class="material-symbols-outlined">
                         thumb_up

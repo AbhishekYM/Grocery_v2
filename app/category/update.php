@@ -1,5 +1,5 @@
 <?php
-include('connection.php');
+include('D:/xampp/htdocs/Grocery/database/connection.php');
 $id= $_GET['updateid'];
 if(isset($_POST['submit']))
 {

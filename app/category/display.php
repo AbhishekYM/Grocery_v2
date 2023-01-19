@@ -11,7 +11,7 @@ if ($result) {
             <td><?php echo $row['image']?></td>
             <td><?php echo $row['discount']?></td>
             <td>
-                <button class="btn btn-primary"><a class="text-light" href="display.php?updateid=<?php echo $row['id'] ?>">
+                <button class="btn btn-primary"><a class="text-light" href="/Grocery/html/Admin/update_categories.php?updateid=<?php echo $row['id'] ?>">
                 Update</a></button>
                 <button class="btn btn-danger"><a class="text-light" href="/Grocery/app/category/delete.php?deleteid=<?php echo $row['id'] ?>">Delete</a></button>
             </td>
