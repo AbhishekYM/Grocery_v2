@@ -170,7 +170,7 @@
 						<i class="fa fa-star"></i>
 						<i class="fa fa-star-half"></i>
 					</div>
-					<a href="" class="btn">add to cart</a>
+					<a  href="" class="btn">add to cart</a>
 				</div>
 
 			</div>

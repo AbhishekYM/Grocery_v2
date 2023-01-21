@@ -1,47 +1,14 @@
-<?php
-  include('D:/xampp/htdocs/Grocery/database/connection.php');
-  ?>
 
 <?php
-	include "html/master/nav.php";
-	?>
- 
-<?php
-if (isset($_POST['submit'])) {
- 
-    $full_name = $_POST['full_name'];
+if (isset($_POST['press'])) {
+  $fullname = $_POST['name'];
+  echo $fullname;
   $user_username = $_POST['user_username'];
-  $user_email = $_POST['user_email'];
-  $user_password = $_POST['user_password'];
-  $user_confpassword = $_POST['user_confpassword'];
-  $user_mobile = $_POST['user_mobile'];
-  $user_type = $_POST['user_type'];
-  //insert query
-  $select = "select * from user where email = '$user_email' && password = '$user_password'";
-  $result = mysqli_query($con, $select);
-  if(mysqli_num_rows($result)>0)
-  {
-    $error[] = 'user already';
-  }else{
-    if($user_password != $user_confpassword){
-      $error[] = 'password not matched';
-    }else{
-      $insert = "insert into user(full_name,username,email,password,type,mobile) values('$full_name','$user_username','$user_email','$user_password','$user_type','$user_mobile')";
-      mysqli_query($con, $insert);
-      
-      header('location:/Grocery/index.php');
-    }
-  }
-  // $insert_query = "insert into user(full_name,username,email,password,type,mobile)  values ('$full_name','$user_username','$user_email','$user_password','$user_mobile','$user_type')";
- 
-  // $sql_execute = mysqli_query($con, $insert_query);
-  // if ($sql_execute) {
-  //   echo "<script>alert('Data inserted successfully')</script>";
-  // } else {
-  //   die((mysqli_error($con)));
-  // }
+
+  echo $user_username;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +49,7 @@ if (isset($_POST['submit'])) {
 
                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                    <form class="mx-1 mx-md-4" action="" method="post">
+                    <form class="mx-1 mx-md-4" method="post" >
                       <?php
                       if(isset($error))
                       {
@@ -95,7 +62,7 @@ if (isset($_POST['submit'])) {
                       <!--Full Name-->
                       <div class="d-flex flex-row align-items-center mb-4">
                         <div class="form-outline flex-fill mb-0">
-                          <input type="text" id="full_name" name="full_name" class="form-control" />
+                          <input type="text" id="full_name" name="name" class="form-control" />
                           <label class="form-label" for="full_name">Full Name</label>
                         </div>
                       </div>
@@ -152,7 +119,8 @@ if (isset($_POST['submit'])) {
                       </div>
                       <!--Submit Button-->
                       <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button name="submit" type="submit" class="btn">Register </button>
+                         <input type="submit" name="press"> 
+                        <!--<a href="#">Register</a> </input> -->
                       </div>
                     </form>
                   </div>
