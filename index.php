@@ -1,15 +1,13 @@
-
 <!DOCTYPE html>
 <html>
 
 <head>
-	<meta charset="utf-8">
+	<meta cha	set="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Grocery Store</title>
 </head>
 
 <body>
-
 	<?php
 	include "html/master/nav.php";
 	?>
@@ -116,8 +114,6 @@
 			</div>
 		</div>
 
-
-
 		<div class="swiper product-slider">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide box">
@@ -170,7 +166,7 @@
 						<i class="fa fa-star"></i>
 						<i class="fa fa-star-half"></i>
 					</div>
-					<a  href="" class="btn">add to cart</a>
+					<a href="" class="btn">add to cart</a>
 				</div>
 
 			</div>
@@ -193,7 +189,9 @@
 				<h3>
 					<?php echo $rowsselectVegetable['title']; ?>
 				</h3>
-				<p>Upto <?php echo $rowsselectVegetable['discount']; ?> off</p>
+				<p>Upto
+					<?php echo $rowsselectVegetable['discount']; ?> off
+				</p>
 				<a href="html/category/index.php?category='vegetable'" class="btn">shop now</a>
 			</div>
 			<?php
@@ -207,7 +205,9 @@
 				<h3>
 					<?php echo $rowsselectVegetable['title']; ?>
 				</h3>
-				<p>Upto <?php echo $rowsselectVegetable['discount']; ?> off</p>
+				<p>Upto
+					<?php echo $rowsselectVegetable['discount']; ?> off
+				</p>
 				<a href="html/category/index.php?category='Fruits'" class="btn">shop now</a>
 			</div>
 			<?php
@@ -220,7 +220,9 @@
 				<h3>
 					<?php echo $rows['title']; ?>
 				</h3>
-				<p>Upto <?php echo $rows['discount']; ?> off</p>
+				<p>Upto
+					<?php echo $rows['discount']; ?> off
+				</p>
 				<a href="html/category/index.php?category='Dairy Product'" class="btn">shop now</a>
 			</div>
 
@@ -234,7 +236,9 @@
 				<h3>
 					<?php echo $rowsselectVegetable['title']; ?>
 				</h3>
-				<p>Upto <?php echo $rowsselectVegetable['discount']; ?> off</p>
+				<p>Upto
+					<?php echo $rowsselectVegetable['discount']; ?> off
+				</p>
 				<a href="html/category/index.php?category='Fresh Meat'" class="btn">shop now</a>
 			</div>
 		</div>
@@ -359,7 +363,7 @@
 		</div>
 	</section>
 	<!--Blog Section-->
-	
+
 	<script src="js/slider.js"></script>
 </body>
 

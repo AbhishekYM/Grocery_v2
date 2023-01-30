@@ -1,39 +1,38 @@
 <?php
-  include('D:/xampp/htdocs/Grocery/database/connection.php');
-  ?>
+include('D:/xampp/htdocs/Grocery/database/connection.php');
+?>
 
 <?php
-	include "html/master/nav.php";
-	?>
- 
+include "D:/xampp/htdocs/Grocery/html/master/nav.php";
+?>
+
 <?php
 if (isset($_POST['submit'])) {
- 
-    $full_name = $_POST['full_name'];
+
+  $full_name = $_POST['full_name'];
   $user_username = $_POST['user_username'];
   $user_email = $_POST['user_email'];
-  $user_password = $_POST['user_password'];
-  $user_confpassword = $_POST['user_confpassword'];
+  $user_password = md5($_POST['user_password']);
+  $user_confpassword = md5($_POST['user_confpassword']);
   $user_mobile = $_POST['user_mobile'];
   $user_type = $_POST['user_type'];
   //insert query
   $select = "select * from user where email = '$user_email' && password = '$user_password'";
   $result = mysqli_query($con, $select);
-  if(mysqli_num_rows($result)>0)
-  {
+  if (mysqli_num_rows($result) > 0) {
     $error[] = 'user already';
-  }else{
-    if($user_password != $user_confpassword){
+  } else {
+    if ($user_password != $user_confpassword) {
       $error[] = 'password not matched';
-    }else{
+    } else {
       $insert = "insert into user(full_name,username,email,password,type,mobile) values('$full_name','$user_username','$user_email','$user_password','$user_type','$user_mobile')";
       mysqli_query($con, $insert);
-      
+
       header('location:/Grocery/index.php');
     }
   }
   // $insert_query = "insert into user(full_name,username,email,password,type,mobile)  values ('$full_name','$user_username','$user_email','$user_password','$user_mobile','$user_type')";
- 
+
   // $sql_execute = mysqli_query($con, $insert_query);
   // if ($sql_execute) {
   //   echo "<script>alert('Data inserted successfully')</script>";
@@ -66,8 +65,9 @@ if (isset($_POST['submit'])) {
     }
   </style>
 </head>
+
 <body>
- 
+
   <br><br><br><br><br><br><br><br>
   <div class="container-fluid" my-3>
 
@@ -84,10 +84,9 @@ if (isset($_POST['submit'])) {
 
                     <form class="mx-1 mx-md-4" action="" method="post">
                       <?php
-                      if(isset($error))
-                      {
-                        foreach($error as $error){
-                          echo '<span class="error-msg">',$error."</span>";
+                      if (isset($error)) {
+                        foreach ($error as $error) {
+                          echo '<span class="error-msg" style="font-size: 2rem; color:red">' . $error . "</span>";
                         }
                         ;
                       }
@@ -120,8 +119,8 @@ if (isset($_POST['submit'])) {
                           <label class="form-label" for="user_password">Password</label>
                         </div>
                       </div>
-                       <!--Confirm Password-->
-                       <div class="d-flex flex-row align-items-center mb-4">
+                      <!--Confirm Password-->
+                      <div class="d-flex flex-row align-items-center mb-4">
                         <div class="form-outline flex-fill mb-0">
                           <input type="password" id="user_confpassword" name="user_confpassword" class="form-control" />
                           <label class="form-label" for="user_confpassword"> Confirm Password</label>
@@ -173,4 +172,3 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
-

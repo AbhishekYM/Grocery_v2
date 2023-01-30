@@ -1,11 +1,20 @@
+<?php
+include('D:/xampp/htdocs/Grocery/database/connection.php');
+session_start();
+if (isset($_SESSION['admin_name'])) {
+    header('location:D:\xampp\htdocs\Grocery\app\user\login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard Panel</title>
 </head>
+
 <body>
     <?php
     include "D:/xampp/htdocs/Grocery/app/master/nav.php";
@@ -13,6 +22,10 @@
     <div class="dash-content">
         <div class="overview">
             <div class="title">
+                <h3>hi, <span>admin</span></h3>
+                <h1>welcome <span>
+                        <?php($_SESSION['admin_name'])?>
+                    </span> </h1>
                 <i class="uil uil-tachometer-fast-alt"></i>
                 <span class="text">Dashboard</span>
             </div>
@@ -38,10 +51,10 @@
                     <a class="text">Total orders</a>
                     <span class="number">1000</span>
                 </div>
-                </div>
-                <br>
-                
-                <div class="boxes">
+            </div>
+            <br>
+
+            <div class="boxes">
                 <div class="box box3">
                     <span class="material-symbols-outlined">
                         thumb_up
@@ -51,9 +64,11 @@
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-                    
+
                     <a href="categories.php" class="text">Categories</a>
-                    <span class="number"><?php echo $rowsselectCount['total']; ?></span>
+                    <span class="number">
+                        <?php echo $rowsselectCount['total']; ?>
+                    </span>
                 </div>
             </div>
         </div>
@@ -125,6 +140,7 @@
         </div>
         </form>
         <!--<script src="script.js"></script>-->
-        
+
     </body>
+
     </html>
