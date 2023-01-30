@@ -34,15 +34,33 @@ if (isset($_SESSION['admin_name'])) {
                     <span class="material-symbols-outlined">
                         inventory
                     </span>
-                    <span class="text">Total Products</span>
-                    <span class="number">50,120</span>
+                    <?php
+                    $sql = "SELECT COUNT(id) AS total from product;";
+                    $execute = mysqli_query($con, $sql);
+                    $rowsselectCount = mysqli_fetch_array($execute);
+                    ?>
+
+                    <a href="product.php" class="text">Product</a>
+                    <span class="number">
+                        <?php echo $rowsselectCount['total']; ?>
+                    </span>
                 </div>
                 <div class="box box2">
                     <span class="material-symbols-rounded">
                         inventory_2
                     </span>
-                    <span class="text">customers</span>
-                    <span class="number">20,120</span>
+                    <?php
+                    $sql = "SELECT COUNT(type) AS total from user where type='user';";
+                    $execute = mysqli_query($con, $sql);
+                    $rowsselectCount = mysqli_fetch_array($execute);
+                    ?>
+
+                    <a href="product.php" class="text">Customer</a>
+                    <span class="number">
+                        <?php echo $rowsselectCount['total']; ?>
+                    </span>
+                    <!-- <span class="text">customers</span>
+                    <span class="number">20,120</span> -->
                 </div>
                 <div class="box box3">
                     <span class="material-symbols-rounded">

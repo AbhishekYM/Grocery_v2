@@ -58,7 +58,7 @@ include 'D:\xampp\htdocs\Grocery\database\connection.php';
                         $category_title = $row['title'];
                          
                         $category_id = $row['id'];
-                        echo "<option value=' '>$category_title</option>";
+                        echo "<option value='$category_title'>$category_title</option>";
                     }
                     ?>
                     <!-- <option value="">Category2</option>

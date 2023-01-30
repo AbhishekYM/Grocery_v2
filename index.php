@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<meta cha	set="utf-8">
+	<meta cha set="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Grocery Store</title>
 </head>
@@ -11,6 +11,7 @@
 	<?php
 	include "html/master/nav.php";
 	?>
+	
 	<!--Banner Section-->
 	<div class="home" id="home">
 		<section class="content">
@@ -58,120 +59,42 @@
 		<h1 class="heading"> our <span>products</span> </h1>
 
 		<div class="swiper product-slider">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/product-1.png" alt="">
-					<h1>fresh orange</h1>
-					<div class="price">100/- - 200/-</div>
-					<div class="stars">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-half"></i>
-					</div>
-					<a href="" class="btn">add to cart</a>
-				</div>
-				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/product-2.png" alt="">
-					<h1>fresh onion</h1>
-					<div class="price">100/- - 200/-</div>
-					<div class="stars">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-half"></i>
-					</div>
-					<a href="" class="btn">add to cart</a>
-				</div>
-				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/product-3.png" alt="">
-					<h1>fresh meat</h1>
-					<div class="price">100/- - 200/-</div>
-					<div class="stars">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-half"></i>
-					</div>
-					<a href="" class="btn">add to cart</a>
-				</div>
-				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/product-4.png" alt="">
-					<h1>fresh cabbage</h1>
-					<div class="price">100/- - 200/-</div>
-					<div class="stars">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-half"></i>
-					</div>
-					<a href="" class="btn">add to cart</a>
-				</div>
-			</div>
+			<?php
+			$select_query = "select * from product";
+			$result_query = mysqli_query($con, $select_query);
+			while ($row = mysqli_fetch_assoc($result_query)) {
+				$product_id = $row['id'];
+				$code = $row['code'];
+				$product_category = $row['category'];
+				$product_brand = $row['brand'];
+				$product_title = $row['title'];
+				$product_price = $row['price'];
+				$description = $row['description'];
+				$product_image = $row['featured_image'];
+				$quantity = $row['qty'];
+				echo "	<div class='swiper-wrapper'>
+	<div class='swiper-slide box'>
+		<img src='/Grocery/storage/image/product-1.png' alt=''>
+		<h1>$product_title</h1>
+		<div class='price'>$product_price</div>
+		<div class='description'>$description</div>
+		<div class='quantity'>Product Avaliable: $quantity </div>
+		<div class='stars'>
+			<i class='fa fa-star'></i>
+			<i class='fa fa-star'></i>
+			<i class='fa fa-star'></i>
+			<i class='fa fa-star'></i>
+			<i class='fa fa-star-half'></i>
 		</div>
 
-		<div class="swiper product-slider">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/product-5.png" alt="">
-					<h1>fresh potato</h1>
-					<div class="price">100/- - 200/-</div>
-					<div class="stars">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-half"></i>
-					</div>
-					<a href="" class="btn">add to cart</a>
-				</div>
-				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/product-6.png" alt="">
-					<h1>fresh Guvava</h1>
-					<div class="price">100/- - 200/-</div>
-					<div class="stars">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-half"></i>
-					</div>
-					<a href="" class="btn">add to cart</a>
-				</div>
-				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/product-7.png" alt="">
-					<h1>fresh carrot</h1>
-					<div class="price">100/- - 200/-</div>
-					<div class="stars">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-half"></i>
-					</div>
-					<a href="" class="btn">add to cart</a>
-				</div>
-				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/product-8.png" alt="">
-					<h1>fresh lemon</h1>
-					<div class="price">100/- - 200/-</div>
-					<div class="stars">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-half"></i>
-					</div>
-					<a href="" class="btn">add to cart</a>
-				</div>
+	</div>
+</div>
+";
+			}
+			?>
 
-			</div>
-			<div class="swiper-pagination"></div>
-		</div>
+
+
 	</section>
 	<!--Products Section-->
 
