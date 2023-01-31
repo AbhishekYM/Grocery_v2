@@ -24,7 +24,7 @@ if (isset($_SESSION['admin_name'])) {
             <div class="title">
                 <h3>hi, <span>admin</span></h3>
                 <h1>welcome <span>
-                        <?php($_SESSION['admin_name'])?>
+                       
                     </span> </h1>
                 <i class="uil uil-tachometer-fast-alt"></i>
                 <span class="text">Dashboard</span>
@@ -69,6 +69,7 @@ if (isset($_SESSION['admin_name'])) {
                     <a class="text">Total orders</a>
                     <span class="number">1000</span>
                 </div>
+              
             </div>
             <br>
 
@@ -87,8 +88,25 @@ if (isset($_SESSION['admin_name'])) {
                     <span class="number">
                         <?php echo $rowsselectCount['total']; ?>
                     </span>
+                    
+                </div>
+                <div class="box box3">
+                    <span class="material-symbols-rounded">
+                        inventory_2
+                    </span>
+                    <?php
+                    $sql = "SELECT COUNT(id) AS total from feature;";
+                    $execute = mysqli_query($con, $sql);
+                    $rowsselectCount = mysqli_fetch_array($execute);
+                    ?>
+
+                    <a  href="feature.php" class="text">Features</a>
+                    <span class="number">
+                    <?php echo $rowsselectCount['total']; ?>
+                    </span>
                 </div>
             </div>
+            
         </div>
         <div class="activity">
             <div class="title">

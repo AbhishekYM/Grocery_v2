@@ -11,13 +11,25 @@
     integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
     crossorigin="anonymous" />
 </head>
+<style>
+  .backToBase, a{
+    display: flex;
+    font-weight: bold;
+    font-size: 50px;
+  }
+
+  .backToBase:hover {
+    cursor:pointer;
+    color: green;
+  }
+</style>
 
 <body>
-
   <div class="card-wrapper">
     <div class="card">
       <!-- card left -->
       <div class="product-imgs">
+        <div class="backToBase">  <a href="\Grocery\index.php">&larr;</a>   </div>
         <div class="img-display">
           <div class="img-showcase">
             <img src="\Grocery\storage\image\product-1.png" alt="shoe image">
@@ -52,7 +64,7 @@
       <!-- card right -->
       <div class="product-content">
         <h2 class="product-title">Fresh & Hygenic Items</h2>
-        <a href="#" class="product-link">visit nike store</a>
+        <a href="\Grocery\index.php" class="product-link">visit Grocery store</a>
         <div class="product-rating">
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
@@ -74,7 +86,7 @@
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore
             suscipit. Unde.</p>
           <ul>
-          
+
             <li>Available: <span>in stock</span></li>
             <li>Category: <span>Grocery</span></li>
             <li>Shipping Area: <span>All over the world</span></li>

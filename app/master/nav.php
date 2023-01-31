@@ -29,6 +29,10 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
                         <i class="uil uil-estate"></i>
                         <span class="link-name">Dashboard</span>
                     </a></li>
+                    <li><a href="insert_feature.php">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Features</span>
+                    </a></li>
                 <li><a href="insert_product.php">
                         <i class="uil uil-files-landscapes"></i>
                         <span class="link-name">Products</span>
@@ -40,6 +44,14 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
                 <li><a href="#">
                         <i class="uil uil-thumbs-up"></i>
                         <span class="link-name">Brands</span>
+                    </a></li>
+                    <li><a href="#">
+                        <i class="uil uil-thumbs-up"></i>
+                        <span class="link-name">Review</span>
+                    </a></li>
+                    <li><a href="#">
+                        <i class="uil uil-thumbs-up"></i>
+                        <span class="link-name">Blogs</span>
                     </a></li>
                 <li><a href="#">
                         <i class="uil uil-comments"></i>
