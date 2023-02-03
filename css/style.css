@@ -11,6 +11,43 @@
     --outline : .1rem solid rgba(0,0,0.1) ;
 }
 
+.footer{
+    margin-top: 150px;
+    width: 100%;
+    padding: 100px ;
+    background: #eee;
+    color: var(--light-color);
+    display: flex;
+}
+.footer div{
+    text-align: center;
+}
+.col-2{
+    flex-grow: 2;
+}
+.footer div h3{
+    font-weight: 300px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+
+}
+.col-1 a{
+    display: block;
+    text-decoration: none;
+    color: var(--light-color);
+    margin-bottom: 10px;
+}
+form input{
+    width: 400px;
+    height: 45px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    outline: none;
+    border: none;
+}
+
 *
 {
     font-family: 'Poppins', sans-serif;

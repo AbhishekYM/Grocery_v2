@@ -1,10 +1,10 @@
 <?php
 include 'D:/xampp/htdocs/Grocery/database/connection.php';
-$id = $_GET['updateid'];
+$id = $_GET['deleteid'];
 if(isset($id))
 {
     $show = 0;
-    $sql = "UPDATE `review` SET `role`='1' WHERE id = $id";
+    $sql = "UPDATE `review` SET `role`='0' WHERE id = $id";
     $result = mysqli_query($con, $sql);
     if($result)
     {

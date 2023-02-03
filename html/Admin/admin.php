@@ -105,6 +105,20 @@ if (isset($_SESSION['admin_name'])) {
                     <?php echo $rowsselectCount['total']; ?>
                     </span>
                 </div>
+                <div class="box box3">
+                    <span class="material-symbols-rounded">
+                        inventory_2
+                    </span>
+                    <?php
+                    $sql = "SELECT COUNT(id) AS total from category;";
+                    $execute = mysqli_query($con, $sql);
+                    $rowsselectCount = mysqli_fetch_array($execute);
+                    ?>
+                    <a class="text" href="review.php">Reviews</a>
+                    <span class="number">
+                    <?php echo $rowsselectCount['total']; ?>
+                    </span>
+                </div>
             </div>
             
         </div>

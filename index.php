@@ -11,7 +11,7 @@
 	<?php
 	include "html/master/nav.php";
 	?>
-	
+
 	<!--Banner Section-->
 	<div class="home" id="home">
 		<section class="content">
@@ -28,33 +28,40 @@
 	<section class="features" id="features">
 		<h1 class="heading"> our <span>features</span> </h1>
 		<div class="box-container">
-		<?php
+			<?php
 			$select_query = "select * from feature";
 			$result_query = mysqli_query($con, $select_query);
-		while ($row = mysqli_fetch_assoc($result_query)) {
-			$id = $row['id'];
-			$name = $row['name'];
-			$description = $row['description'];
-			$image = $row['image'];
-			echo "<div class='box'>
-				<img src='/Grocery/storage/image/feature-img-1.png' alt='' srcset=''>
-				<h3>$name</h3>
-				<p>$description</p>
-				<a href='#' class='btn'>read more</a>
-			</div>
-					
-";
-		}
-?>		
-</div>	
+			while ($row = mysqli_fetch_assoc($result_query)) {
+				$id = $row['id'];
+				$name = $row['name'];
+				$description = $row['description'];
+				$image = $row['image'];
+				?>
+				<div class='box'>
+					<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" alt='' srcset=''>
+					<h3>
+						<?php echo $name ?>
+					</h3>
+					<p>
+						<?php echo $description ?>
+					</p>
+					<a href='#' class='btn'>read more</a>
+				</div>
+
+				<?php
+			}
+			?>
+		</div>
 	</section>
 	<!--Feature Section-->
 
 	<!--Products Section-->
 	<section class="products" id="products">
 		<h1 class="heading"> our <span>products</span> </h1>
-
-		<div class="swiper product-slider">
+		<a href='/Grocery/html/product-details/details.php'  class='btn' style="display:flex; float: right;">show more</a>
+		<!-- <div class="swiper product-slider"> -->
+		<div class="swiper product-slider" style="width: 100%;">
+		<div class='swiper-wrapper'>
 			<?php
 			$select_query = "select * from product";
 			$result_query = mysqli_query($con, $select_query);
@@ -68,28 +75,40 @@
 				$description = $row['description'];
 				$product_image = $row['featured_image'];
 				$quantity = $row['qty'];
-				echo "	<div class='swiper-wrapper'>
-	<div class='swiper-slide box'>
-		<img src='/Grocery/storage/image/product-1.png' alt=''>
-		<h1>$product_title</h1>
-		<div class='price'>$product_price</div>
-		<div class='description'>$description</div>
-		<div class='quantity'>Product Avaliable: $quantity </div>
-		<div class='stars'>
-			<i class='fa fa-star'></i>
-			<i class='fa fa-star'></i>
-			<i class='fa fa-star'></i>
-			<i class='fa fa-star'></i>
-			<i class='fa fa-star-half'></i>
-		</div>
+				?>
+				
+					<div class='swiper-slide box'>
+						<img src="/Grocery/storage/image/<?php echo $row['featured_image'] ?>" />
+						<h1>
+							<?php echo $product_title ?>
+						</h1>
+						<div class='price'>
+							<?php echo $product_price ?>
+						</div>
+						<div class='description'>
+							<?php echo $description ?>
+						</div>
+						<div class='quantity'>Product Avaliable:
+							<?php echo $quantity ?>
+						</div>
+						<div class='stars'>
+							<i class='fa fa-star'></i>
+							<i class='fa fa-star'></i>
+							<i class='fa fa-star'></i>
+							<i class='fa fa-star'></i>
+							<i class='fa fa-star-half'></i>
+							<br>
+							<a href="/Grocery/html/product-details/details.php" class="btn">Read More</a>
+						</div>
 
-	</div>
+					</div>
 
-";
+					<?php
 			}
 			?>
 
-</div>
+			</div>
+		</div>
 
 	</section>
 	<!--Products Section-->
@@ -98,97 +117,78 @@
 	<section class="categories" id="categories">
 		<h1 class="heading">product <span>categories</span> </h1>
 		<div class="box-container">
-		<?php
+			<?php
 			$select_query = "select * from category";
 			$result_query = mysqli_query($con, $select_query);
-		while ($row = mysqli_fetch_assoc($result_query)) {
-			$id = $row['id'];
-			$title = $row['title'];
+			while ($row = mysqli_fetch_assoc($result_query)) {
+				$id = $row['id'];
+				$title = $row['title'];
 
-			$image = $row['image'];
-			$discount = $row['discount'];
-			echo "
-			<div class='box'>
-				<img src='/Grocery/storage/image/<?php echo $image; ?>' alt=''>
-				<h3>
-					$title
-				</h3>
-				<p>Upto
-					$discount off
-				</p>
-				<a href='html/category/index.php?category='vegetable'' class='btn'>shop now</a>
-			</div>";
-		}
+				$image = $row['image'];
+				$discount = $row['discount'];
+				?>
+
+				<div class='box'>
+					<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" alt=''>
+					<h3>
+						<?php echo $title ?>
+					</h3>
+					<p>Upto
+						<?php echo $discount ?>
+					</p>
+					<a href='html/category/index.php?category=' vegetable'' class='btn'>shop now</a>
+				</div>
+				<?php
+			}
 			?>
-			
+
 		</div>
 	</section>
 	<!--Categories Section-->
 
 	<!--Review Section-->
+	
 	<section class="review" id="review">
-		<h1 class="heading">Customer's <span>Review</span> </h1>
-		<div class="swiper review-slider">
+			<h1 class="heading">Customer's <span>Review</span> </h1>
+			<div class="swiper review-slider">
 			<div class="swiper-wrapper">
+					
+	<?php
+	$select_query = "SELECT * FROM `review` WHERE role = 1";
+	$result_query = mysqli_query($con, $select_query);
+	while ($row = mysqli_fetch_assoc($result_query)) {
+		$id = $row['id'];
+		$photo = $row['photo'];
+		$description = $row['description'];
+		$name = $row['name'];
+		?>
 				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/pic-1.png" alt="">
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-						the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-						of type and scrambled it to make a type specimen book.</p>
-					<h3>Natsu Dragneel</h3>
-					<div class="stars">
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars-half"></i>
-					</div>
-				</div>
-
-				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/pic-2.png" alt="">
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-						the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-						of type and scrambled it to make a type specimen book.</p>
-					<h3>Lucy Hearflia</h3>
-					<div class="stars">
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars-half"></i>
-					</div>
-				</div>
-				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/pic-3.png" alt="">
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-						the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-						of type and scrambled it to make a type specimen book.</p>
-					<h3>Gray Labstar</h3>
-					<div class="stars">
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars-half"></i>
-					</div>
-				</div>
-				<div class="swiper-slide box">
-					<img src="/Grocery/storage/image/pic-4.png" alt="">
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-						the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-						of type and scrambled it to make a type specimen book.</p>
-					<h3>Mirajane</h3>
-					<div class="stars">
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars"></i>
-						<i class="fa fa-stars-half"></i>
-					</div>
-				</div>
+						<img src="/Grocery/storage/image/<?php echo $row['photo'] ?>" alt="">
+						<p>
+							<?php echo $row['description'] ?>
+						</p>
+						<h3>
+							<?php echo $row['name'] ?>
+						</h3>
+						<div class="stars">
+							<i class="fa fa-stars"></i>
+							<i class="fa fa-stars"></i>
+							<i class="fa fa-stars"></i>
+							<i class="fa fa-stars"></i>
+							<i class="fa fa-stars-half"></i>
+						</div>
+						</div>
+					
+				
+			
+			<?php
+	}
+	?>
+			
 			</div>
-		</div>
+			</div>
+
+
 	</section>
 	<!--Review Section-->
 
@@ -243,6 +243,80 @@
 		</div>
 	</section>
 	<!--Blog Section-->
+
+
+	<!--Footer Section-->
+	<!--Footer Section(Insert Query)-->
+	<?php
+	include('D:\xampp\htdocs\Grocery\app\review\insert.php');
+	?>
+
+	
+
+
+	<section>
+		<div class="box">
+			<div class="footer">
+				<div class="col-1" style="font-size: 2rem;">
+					<h3>UseFull Links</h3>
+					<a href="">About</a>
+					<a href="">Services</a>
+					<a href="">Contact</a>
+					<a href="">Shop</a>
+					<a href="">Bog</a>
+				</div>
+				<div class="col-2" style="font-size: 2rem;">
+					<h3>Write a Review</h3>
+					<form action="" method="post" enctype="multipart/form-data">
+						<!--Image-->
+						<div class="mb-3">
+							<label for="formFile" class="form-label">Upload Image</label>
+							<input class="form-control" type="file" name="photo" id="formFile">
+						</div>
+						<!--Image-->
+
+
+						<!--Name-->
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Enter Name</label>
+							<input type="text" name="name" class="form-control" id="exampleFormControlInput1"
+								placeholder="name@example.com">
+						</div>
+						<!--Name-->
+
+						<!--Description-->
+						<div class="form-floating">
+							<textarea class="form-control" name="description" placeholder="Leave a review here"
+								id="floatingTextarea"></textarea>
+						</div><br>
+						<!--Description-->
+						<button type="submit" name="insert_review" class="btn">Submit Now</button>
+					</form>
+				</div>
+				<div class="col-3" style="font-size: 2rem;">
+					<h3>Address</h3>
+					<p>123, XYZ Road, Banglore</p>
+				</div>
+				<div class="social-links">
+            <p>Share At: </p>
+            <a href="#">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-pinterest"></i>
+            </a>
+          </div>
+	</section>
+	<!--Footer Section-->
 
 	<script src="js/slider.js"></script>
 </body>
