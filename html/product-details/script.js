@@ -29,5 +29,25 @@ $(document).ready(function(){
         }else{
             $(".section > div > input").val("1");
         }
-    })                        
+    }) 
+    
+    
 }) 
+
+function addToCart(productId,userId,quantity,details) {
+    if(productId != null && userId != null && quantity != null && details != null){
+        $.ajax({
+            url:"add-to-cart.php",    //the page containing php script
+            type: "post",    //request type,
+            dataType: 'json',
+            data: {productId: productId,userId:userId,quantity:quantity,details:details,added:"yes"},
+            success:function(result){
+                console.log(result);
+                if(result){
+                    alert('Added to cart successfully');
+                }
+            }
+        });
+    }
+    
+}

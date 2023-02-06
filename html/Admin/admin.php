@@ -1,9 +1,6 @@
 <?php
 include('D:/xampp/htdocs/Grocery/database/connection.php');
 session_start();
-if (isset($_SESSION['admin_name'])) {
-    header('location:D:\xampp\htdocs\Grocery\app\user\login.php');
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,10 +16,14 @@ if (isset($_SESSION['admin_name'])) {
     <?php
     include "D:/xampp/htdocs/Grocery/app/master/nav.php";
     ?>
+    <?php
+    print_r($_SESSION);
+    // die("ff");
+    ?>
     <div class="dash-content">
         <div class="overview">
             <div class="title">
-                <h3>hi, <span>admin</span></h3>
+                <h3>hi, <span><?php echo $_SESSION['admin_name'];?></span></h3>
                 <h1>welcome <span>
                        
                     </span> </h1>

@@ -19,7 +19,7 @@
 			<p>An online grocer is either a brick-and-mortar supermarket or grocery store that allows online ordering,
 				or a standalone e-commerce service that includes grocery items. There is usually a delivery charge for
 				this service.</p>
-			<a href="#" class="btn">shop now</a>
+			<a href="D:/xampp/htdocs/Grocery/html/product-details/details.php" class="btn">shop now</a>
 	</div>
 	</section>
 	<!--Banner Section-->
@@ -27,7 +27,7 @@
 	<!--Feature Section-->
 	<section class="features" id="features">
 		<h1 class="heading"> our <span>features</span> </h1>
-		<div class="box-container">
+		<div class="box-container"  >
 			<?php
 			$select_query = "select * from feature";
 			$result_query = mysqli_query($con, $select_query);
@@ -37,7 +37,7 @@
 				$description = $row['description'];
 				$image = $row['image'];
 				?>
-				<div class='box'>
+				<div class='box' style=" border-radius: 50px;">
 					<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" alt='' srcset=''>
 					<h3>
 						<?php echo $name ?>
@@ -60,7 +60,7 @@
 		<h1 class="heading"> our <span>products</span> </h1>
 		<a href='/Grocery/html/product-details/details.php'  class='btn' style="display:flex; float: right;">show more</a>
 		<!-- <div class="swiper product-slider"> -->
-		<div class="swiper product-slider" style="width: 100%;">
+		<div class="swiper product-slider" style="width: 100%; ">
 		<div class='swiper-wrapper'>
 			<?php
 			$select_query = "select * from product";
@@ -77,7 +77,7 @@
 				$quantity = $row['qty'];
 				?>
 				
-					<div class='swiper-slide box'>
+					<div class='swiper-slide box' style=" border-radius: 50px;">
 						<img src="/Grocery/storage/image/<?php echo $row['featured_image'] ?>" />
 						<h1>
 							<?php echo $product_title ?>
@@ -128,7 +128,7 @@
 				$discount = $row['discount'];
 				?>
 
-				<div class='box'>
+				<div class='box' style=" border-radius: 50px;">
 					<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" alt=''>
 					<h3>
 						<?php echo $title ?>
@@ -150,7 +150,7 @@
 	
 	<section class="review" id="review">
 			<h1 class="heading">Customer's <span>Review</span> </h1>
-			<div class="swiper review-slider">
+			<div class="swiper review-slider" >
 			<div class="swiper-wrapper">
 					
 	<?php
@@ -162,7 +162,7 @@
 		$description = $row['description'];
 		$name = $row['name'];
 		?>
-				<div class="swiper-slide box">
+				<div class="swiper-slide box" style=" border-radius: 50px;">
 						<img src="/Grocery/storage/image/<?php echo $row['photo'] ?>" alt="">
 						<p>
 							<?php echo $row['description'] ?>
@@ -196,7 +196,7 @@
 	<section class="blogs" id="blogs">
 		<h1 class="heading">Our <span>blogs</span> </h1>
 		<div class="box-container">
-			<div class="box">
+			<div class="box" style=" border-radius: 50px;">
 				<img src="/Grocery/storage/image/blog-1.jpg" alt="" srcset="">
 				<div class="content">
 					<div class="icons">
@@ -211,7 +211,7 @@
 				</div>
 			</div>
 
-			<div class="box">
+			<div class="box" style=" border-radius: 50px;">
 				<img src="/Grocery/storage/image/blog-2.jpg" alt="" srcset="">
 				<div class="content">
 					<div class="icons">
@@ -226,7 +226,7 @@
 				</div>
 			</div>
 
-			<div class="box">
+			<div class="box" style=" border-radius: 50px;">
 				<img src="/Grocery/storage/image/blog-3.jpg" alt="" srcset="">
 				<div class="content">
 					<div class="icons">
@@ -255,6 +255,7 @@
 
 
 	<section>
+	<h1 class="heading">Write<span>Review</span> </h1>
 		<div class="box">
 			<div class="footer">
 				<div class="col-1" style="font-size: 2rem;">
@@ -298,22 +299,7 @@
 					<p>123, XYZ Road, Banglore</p>
 				</div>
 				<div class="social-links">
-            <p>Share At: </p>
-            <a href="#">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-pinterest"></i>
-            </a>
+           
           </div>
 	</section>
 	<!--Footer Section-->
@@ -321,4 +307,4 @@
 	<script src="js/slider.js"></script>
 </body>
 
-</html>
+</html>	

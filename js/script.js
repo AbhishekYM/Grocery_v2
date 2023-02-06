@@ -27,3 +27,32 @@ document.querySelector('#menu-btn').onclick = () => {
     navbar.classList.toggle('active');
 }
 
+
+// bind cart data from DB 
+// <div class="shopping-cart active">
+/*
+<div class="box">
+<i class="fa fa-trash"></i>
+<img src="/Grocery/storage/image/cart-img-1.png" alt="">
+<div class="content">
+    <h3>Watermelon</h3>
+    <span class="price">100</span>
+    <span class="quantity">Qty: 2</span>
+</div>
+</div>
+*/
+
+function getCartData() {    
+        $.ajax({
+            url:"get-cart-date.php",    //the page containing php script
+            type: "get",    //request type,
+            dataType: 'json',            
+            success:function(result){
+                console.log(result);
+            }
+        });
+    
+    
+}
+
+getCartData();
