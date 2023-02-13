@@ -8,14 +8,13 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Product</title>
 </head>
 <body>
     <?php
     include "D:/xampp/htdocs/Grocery/app/master/nav.php";
     
     ?>
-   
     <img src="image/image/logo.png" alt="">
     </div>
     <br>
@@ -24,15 +23,18 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
         <thead>
             <tr>
                 <th scope="col">id</th>
-                <th scope="col">title</th>
-                <th scope="col">image</th>
-                <th scope="col">discount</th>
-                <th scope="col">operations</th>
+                <th scope="col">full_name</th>
+                <th scope="col">username</th>
+                <th scope="col">email</th>
+                <th scope="col">password</th>
+                <th scope="col">type</th>
+                <th scope="col">mobile</th>
+                <th scope="col">Operations</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            include 'D:\xampp\htdocs\Grocery\app\category\display.php';
+            include 'D:\xampp\htdocs\Grocery\app\user\display.php';
             ?>
           
         </tbody>

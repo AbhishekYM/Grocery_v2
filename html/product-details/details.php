@@ -44,19 +44,21 @@ $userId = 2;
             <div class="product-info">
               <div class="product-info-top">
                 <h2 class="sm-title">lifestyle</h2>
-                <div class="rating">
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="far fa-star"></i></span>
-                </div>
+               
+                <div class='stars'>
+							<i class='fa fa-star'></i>
+							<i class='fa fa-star'></i>
+							<i class='fa fa-star'></i>
+							<i class='fa fa-star'></i>
+							<i class='fa fa-star-half'></i>
+							<br>
+						</div>
               </div>
               <a href="#" class="product-name">
                 <?php echo $row['description']; ?>
               </a>
-              <p class="product-price">$ 150.00</p>
-              <p class="product-price">$ 133.00</p>
+             
+              <p class="">$ 133.00</p>
             </div>
             <div class="off-info">
             </div>
@@ -68,60 +70,7 @@ $userId = 2;
       </div>
     </div>
     <!-- product col right -->
-    <div class="product-col-right">
-      <div class="product-col-r-top flex">
-        <?php
-        $select_query = "select * from category where title='vegetable' ";
-        $result_query = mysqli_query($con, $select_query);
-        while ($row = mysqli_fetch_assoc($result_query)) {
-          $id = $row['id'];
-          $title = $row['title'];
-          $discount = $row['discount'];
-          $image = $row['image'];
-          ?>
-          <div class="product-col-content">
-            <img src="/Grocery/storage/image/<?php echo $row['image'] ?>" alt="">
-            <h2 class="sm-title">Fresh Product</h2>
-            <h2 class="md-title">
-              <?php echo $row['title'] ?>
-            </h2>
-            <p class="text-light"> Discount:
-              <?php echo $row['discount'] ?>
-            </p>
-            <button type="button" class="btn-dark">Shop now</button>
-          </div>
-        </div>
-
-        <div class="product-col-r-bottom">
-          <!-- left -->
-          <div class="flex">
-            <div class="product-col-content">
-
-              <h2 class="sm-title">Fresh & Hygenic Fruits </h2>
-              <h2 class="md-title">Fruits </h2>
-              <p class="text-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae consequatur
-                facilis eligendi quibusdam voluptatibus exercitationem autem voluptatum, beatae architecto odit,
-                quisquam repellat. Deleniti, architecto ab.</p>
-              <button type="button" class="btn-dark">Shop now</button>
-            </div>
-          </div>
-          <!-- right -->
-          <div class="flex">
-            <div class="product-col-content">
-              <h2 class="sm-title">Fresh meat products</h2>
-              <h2 class="md-title">Meat</h2>
-              <p class="text-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae consequatur
-                facilis eligendi quibusdam voluptatibus exercitationem autem voluptatum, beatae architecto odit,
-                quisquam repellat. Deleniti, architecto ab.</p>
-              <button type="button" class="btn-dark">Shop now</button>
-            </div>
-          </div>
-        </div>
-      <?php
-        }
-        ?>
-    </div>
-  </div>
+    
 </body>
 </html>
 </body>

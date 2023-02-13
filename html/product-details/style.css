@@ -18,7 +18,7 @@ body{
 /* Utility stylings */
 img{
     width: 100%;
-    display: block;
+  
 }
 .container{
     width: 88vw;
@@ -118,6 +118,7 @@ img{
 .product-info{
     background: white;
     padding: 2rem;
+    font-size: 20px !important;
 }
 .product-info-top{
     display: flex;

@@ -17,7 +17,7 @@ if ($result) {
             <td><?php echo $row['qty']?></td>
             <td><?php echo $row['status']?></td>
             <td>
-                <button class="btn btn-primary"><a class="text-light" href="\Grocery\app\product\update.php?updateid=<?php echo $row['id'] ?>">
+                <button class="btn btn-primary"><a class="text-light" href="\Grocery\html\Admin\update_product.php?updateid=<?php echo $row['id'] ?>">
                 Update</a></button>
                 <button class="btn btn-danger"><a class="text-light" href="\Grocery\app\product\delete.php?deleteid=<?php echo $row['id'] ?>">
                 Delete</a></button>

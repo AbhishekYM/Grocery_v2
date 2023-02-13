@@ -1,6 +1,9 @@
 <?php
 include('D:/xampp/htdocs/Grocery/database/connection.php');
 session_start();
+if (!isset($_SESSION['name'])) {
+    header('location: /Grocery/index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,31 +13,31 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard Panel</title>
+
 </head>
 
 <body>
     <?php
     include "D:/xampp/htdocs/Grocery/app/master/nav.php";
     ?>
-    <?php
-    print_r($_SESSION);
-    // die("ff");
-    ?>
     <div class="dash-content">
         <div class="overview">
             <div class="title">
-                <h3>hi, <span><?php echo $_SESSION['admin_name'];?></span></h3>
-                <h1>welcome <span>
-                       
-                    </span> </h1>
-                <i class="uil uil-tachometer-fast-alt"></i>
+
+                <h3>hi, <span>
+                        <?php echo $_SESSION['name'] ?>
+                    </span></h3>
+                &nbsp;
+                <h3>welcome </h3>
+
+                </span> </h1>
+            </div>
+            <div class="title">
                 <span class="text">Dashboard</span>
             </div>
             <div class="boxes">
                 <div class="box box1">
-                    <span class="material-symbols-outlined">
-                        inventory
-                    </span>
+                    
                     <?php
                     $sql = "SELECT COUNT(id) AS total from product;";
                     $execute = mysqli_query($con, $sql);
@@ -47,16 +50,14 @@ session_start();
                     </span>
                 </div>
                 <div class="box box2">
-                    <span class="material-symbols-rounded">
-                        inventory_2
-                    </span>
+                    
                     <?php
                     $sql = "SELECT COUNT(type) AS total from user where type='user';";
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
 
-                    <a href="product.php" class="text">Customer</a>
+                    <a href="user.php" class="text">Customer</a>
                     <span class="number">
                         <?php echo $rowsselectCount['total']; ?>
                     </span>
@@ -64,21 +65,15 @@ session_start();
                     <span class="number">20,120</span> -->
                 </div>
                 <div class="box box3">
-                    <span class="material-symbols-rounded">
-                        inventory_2
-                    </span>
+                    
                     <a class="text">Total orders</a>
                     <span class="number">1000</span>
                 </div>
-              
+
             </div>
             <br>
-
             <div class="boxes">
                 <div class="box box3">
-                    <span class="material-symbols-outlined">
-                        thumb_up
-                    </span>
                     <?php
                     $sql = "SELECT COUNT(id) AS total from category;";
                     $execute = mysqli_query($con, $sql);
@@ -89,27 +84,23 @@ session_start();
                     <span class="number">
                         <?php echo $rowsselectCount['total']; ?>
                     </span>
-                    
+
                 </div>
                 <div class="box box3">
-                    <span class="material-symbols-rounded">
-                        inventory_2
-                    </span>
+                    
                     <?php
                     $sql = "SELECT COUNT(id) AS total from feature;";
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
 
-                    <a  href="feature.php" class="text">Features</a>
+                    <a href="feature.php" class="text">Features</a>
                     <span class="number">
-                    <?php echo $rowsselectCount['total']; ?>
+                        <?php echo $rowsselectCount['total']; ?>
                     </span>
                 </div>
                 <div class="box box3">
-                    <span class="material-symbols-rounded">
-                        inventory_2
-                    </span>
+                    
                     <?php
                     $sql = "SELECT COUNT(id) AS total from category;";
                     $execute = mysqli_query($con, $sql);
@@ -117,15 +108,15 @@ session_start();
                     ?>
                     <a class="text" href="review.php">Reviews</a>
                     <span class="number">
-                    <?php echo $rowsselectCount['total']; ?>
+                        <?php echo $rowsselectCount['total']; ?>
                     </span>
                 </div>
             </div>
-            
+
         </div>
         <div class="activity">
             <div class="title">
-                <i class="uil uil-clock-three"></i>
+                
                 <span class="text">Recent Activity</span>
             </div>
             <div class="activity-data">
@@ -190,7 +181,7 @@ session_start();
                 ?>
         </div>
         </form>
-        <!--<script src="script.js"></script>-->
+        <script src="/Grocery/html/Admin/script.js"></script>
 
     </body>
 

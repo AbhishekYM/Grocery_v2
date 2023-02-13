@@ -45,6 +45,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,43 +95,49 @@ if (isset($_POST['submit'])) {
                       <!--Full Name-->
                       <div class="d-flex flex-row align-items-center mb-4">
                         <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="full_name">Full Name</label>
                           <input type="text" id="full_name" name="full_name" class="form-control" />
-                          <label class="form-label" for="full_name">Full Name</label>
+                          
                         </div>
                       </div>
                       <!--User Name-->
                       <div class="d-flex flex-row align-items-center mb-4">
                         <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="user_username">UserName</label>
                           <input type="text" id="user_username" name="user_username" class="form-control" />
-                          <label class="form-label" for="user_username">UserName</label>
+                          
                         </div>
                       </div>
                       <!--Email-->
                       <div class="d-flex flex-row align-items-center mb-4">
                         <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="user_email">Your Email</label>
                           <input type="email" id="user_email" name="user_email" class="form-control" />
-                          <label class="form-label" for="user_email">Your Email</label>
+                         
                         </div>
                       </div>
                       <!--Password-->
                       <div class="d-flex flex-row align-items-center mb-4">
                         <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="user_password">Password</label>
                           <input type="password" id="user_password" name="user_password" class="form-control" />
-                          <label class="form-label" for="user_password">Password</label>
+                          
                         </div>
                       </div>
                       <!--Confirm Password-->
                       <div class="d-flex flex-row align-items-center mb-4">
                         <div class="form-outline flex-fill mb-0">
-                          <input type="password" id="user_confpassword" name="user_confpassword" class="form-control" />
-                          <label class="form-label" for="user_confpassword"> Confirm Password</label>
+                        <label class="form-label" for="user_confpassword"> Confirm Password</label>  
+                        <input type="password" id="user_confpassword" name="user_confpassword" class="form-control" />
+                          
                         </div>
                       </div>
                       <!--Mobile-->
                       <div class="d-flex flex-row align-items-center mb-4">
                         <div class="form-outline flex-fill mb-0">
-                          <input type="text" id="user_mobile" name="user_mobile" class="form-control" />
-                          <label class="form-label" for="user_mobile">Mobile</label>
+                        <label class="form-label" for="user_mobile">Mobile</label>  
+                        <input type="text" id="user_mobile" name="user_mobile" class="form-control" />
+                          
                         </div>
                       </div>
                       <!--Type(Admin OR User)-->
@@ -144,14 +151,16 @@ if (isset($_POST['submit'])) {
                       </div>
                       <!--Terms of service-->
                       <div class="form-check d-flex justify-content-center mb-5">
-                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                        <label class="form-check-label" for="form2Example3">
+                      <label class="form-check-label" for="form2Example3">  
+                      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                        
                           I agree all statements in <a href="#!">Terms of service</a>
                         </label>
                       </div>
                       <!--Submit Button-->
                       <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button name="submit" type="submit" class="btn">Register </button>
+                        <!-- <button name="submit" type="submit" class="btn">Register </button> -->
+                        <input type="submit" name="submit" class="btn btn-info mb-3 px-3" value="Register">
                       </div>
                     </form>
                   </div>
@@ -165,10 +174,8 @@ if (isset($_POST['submit'])) {
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </div>
-  </div>
+                    </div>
+  </section>
 </body>
 
 </html>

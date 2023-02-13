@@ -4,25 +4,12 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
 <!----======== CSS ======== -->
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="/Grocery/bootstrap/bootstrap-5.0.2-dist/css/bootstrap.min.css">
-<!-- 
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
-<!----===== Iconscout CSS ===== -->
-<!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-<link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-<link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-<link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
 <form action="" method="post">
     <nav>
         <div class="logo-name">
-            <div class="logo-image">
-                <!--<img src="images/logo.png" alt="">-->
-            </div>
+            <!-- <div class="logo-image">
+                <img src="images/logo.png" alt="">          
+            </div> -->
             <span class="logo_name">Grocery</span>
         </div>
         <div class="menu-items">
@@ -64,13 +51,12 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
                         <span class="link-name">Share</span>
                     </a></li>
             </ul>
-           
             <ul class="logout-mode">
                 <li><a href="/Grocery/app/user/logout.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">  Logout</span>
                     </a></li>
-                <li class="mode">
+                <!-- <li class="mode">
                     <a href="#">
                         <i class="uil uil-moon"></i>
                         <span class="link-name">Dark Mode</span>
@@ -78,7 +64,7 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
                     <div class="mode-toggle">
                         <span class="switch"></span>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>
@@ -92,4 +78,4 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
             <img src="image/image/logo.png" alt="">
         </div>
         <script src="/Grocery/html/Admin/script.js"></script>
-        <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+        <!-- <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script> -->
