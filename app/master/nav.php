@@ -38,7 +38,7 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
                         <i class="uil uil-thumbs-up"></i>
                         <span class="link-name">Review</span>
                     </a></li>
-                    <li><a href="#">
+                    <li><a href="insert_blog.php">
                         <i class="uil uil-thumbs-up"></i>
                         <span class="link-name">Blogs</span>
                     </a></li>

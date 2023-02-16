@@ -60,7 +60,7 @@ if (!isset($_SESSION['user_name'])) {
 			top: 0;
 		}
 
-		.content {
+		.content1 {
 			width: 60%;
 			margin: 160px auto 0;
 			text-align: center;
@@ -69,13 +69,6 @@ if (!isset($_SESSION['user_name'])) {
 
 		.content h1 {
 			font-size: 5rem;
-		}
-
-		.content h3 {
-			width: 50px;
-			margin: 20px auto 100px;
-			font-weight: 100;
-			line-height: 25px;
 		}
 
 		.shop {
@@ -117,7 +110,7 @@ if (!isset($_SESSION['user_name'])) {
 			background: #fff;
 		}
 
-		.searchButton{
+		.searchButton {
 
 			flex: 0 1;
 			-webkit-box-sizing: border-box;
@@ -133,6 +126,7 @@ if (!isset($_SESSION['user_name'])) {
 	<?php
 	include "html/master/nav.php";
 	?>
+	
 	<br><br><br><br>
 	<form action="" class="search-form" method="post" style="margin-left:476px;">
 		<!-- <input type="search" id="search-box" placeholder="search" name="searchTerm"> -->
@@ -140,8 +134,8 @@ if (!isset($_SESSION['user_name'])) {
 		<!-- <input type="submit" value="search" name="submit"> -->
 		<input aria-label="productSearch" autocomplete="off" type="text" id="productSearch" name="searchTerm"
 			placeholder="Search for Products..." class="searchType" value="" style="
-    width: 388px;
-    margin-left: 74px;
+	width: 388px;
+	margin-left: 74px;
 ">
 		<button type="submit" name="submit" class="searchButton"><svg viewBox="0 0 20 20" height="15px">
 				<path
@@ -154,66 +148,100 @@ if (!isset($_SESSION['user_name'])) {
 	<?php
 	if (isset($_POST['submit'])) {
 		$searchTerm = $_POST['searchTerm'];
-		$product = "SELECT * FROM product WHERE title LIKE '%$searchTerm%'";
-		$category = "SELECT * FROM category WHERE title LIKE '%$searchTerm%'";
-		$result = mysqli_query($con, $product);
+		// $product = "SELECT * FROM product WHERE title LIKE '%$searchTerm%'";
+		// $category = "SELECT * FROM category WHERE title LIKE '%$searchTerm%'";
+		// $sql = "SELECT * FROM product Join table category ON product.id = category.id where product_title LIKE '%$searchTerm%' OR category.title LIKE '%$searchTerm%'";
+		$sql = "SELECT * from product as t1 JOIN category as t2 ON t1.id = t2.product_id where t1.title LIKE '%$searchTerm%'OR t2.title LIKE '%$searchTerm%' ORDER BY t1.title DESC";
+		
+		$result = mysqli_query($con, $sql);
 		if (mysqli_num_rows($result) > 0) {
-			while ($row = mysqli_fetch_assoc($result)) {
+			while ($row = mysqli_fetch_assoc($result)) { 
+				$id = $row['id'];
+				$title = $row['title'];
+				$image = $row['image'];
+				$discount = $row['discount'];
 				?>
-				<!-- single product -->
-				<div class="product">
-					<div class="product-content" style="width:10%;">
-						<div class="product-img">
-							<img src="/Grocery/storage/image/<?php echo $row['featured_image']; ?>" alt="product image">
-						</div>
-					</div>
-					<br>
-					<div>
-						<button type="button" class="btn-cart"
-							onclick="addToCart(<?php echo $row['id']; ?>,<?php echo $userId; ?>,<?php echo $row['qty']; ?>,'<?php echo $row['description']; ?>')">
-							add to cart
-							<span><i class="fas fa-plus"></i></span>
-						</button>
-						<button type="button" class="btn-buy"> <a href="/Grocery/html/payment/payment.php">buy now</a>
-							<span><i class="fas fa-shopping-cart"></i></span>
-						</button>
-					</div>
-					<div class="product-info" style="
-													margin: 5px;
-													width: 249px;
-												">
-						<div class="product-info-top">
-							<h2 class="sm-title">lifestyle</h2>
-
-							<div class='stars'>
-								<i class='fa fa-star'></i>
-								<i class='fa fa-star'></i>
-								<i class='fa fa-star'></i>
-								<i class='fa fa-star'></i>
-								<i class='fa fa-star-half'></i>
-								<br>
+				<table class=" table-bordered">
+  <thead>
+    <tr>
+      
+    
+			</th>
+			</thead>
+			<tbody>
+    <tr>
+      <th scope="row">
+	<div class="split left">
+  <div class="centered">
+	
+	  <div class="product" style="margin-left:106px;">
+						<div class="product-content" style="width:10%;">
+							<div class="product-img">
+								<h1>Products</h1>
+								<img src="/Grocery/storage/image/<?php echo $row['featured_image']; ?>" alt="product image">
 							</div>
 						</div>
-						<a href="#" class="product-name">
-							<?php echo $row['description']; ?>
-						</a>
-
-						<p class="">$ 133.00</p>
-					</div>
-					<!-- end of single product -->
-					<?php
-
+						<br>
+						<div>
+							<button type="button" class="btn-cart"onclick="addToCart(<?php echo $row['id']; ?>,<?php echo $userId; ?>,<?php echo $row['qty']; ?>,'<?php echo $row['description']; ?>')">
+							add to cart
+							<span><i class="fas fa-plus"></i></span>
+							</button>
+							<button type="button" class="btn-buy"> <a href="/Grocery/html/payment/payment.php">buy now</a>
+							<span><i class="fas fa-shopping-cart"></i></span>
+							</button>
+						</div>
+						<div class="product-info" style="margin: 5px;width: 249px;">
+							<div class="product-info-top">
+								<h2 class="sm-title">lifestyle</h2>
+									<div class='stars'>
+										<i class='fa fa-star'></i>
+										<i class='fa fa-star'></i>
+										<i class='fa fa-star'></i>
+										<i class='fa fa-star'></i>
+										<i class='fa fa-star-half'></i>
+										<br>
+									</div>
+							</div>
+									<a href="#" class="product-name">
+									<?php echo $row['description']; ?>
+									</a>
+									<p class="">RS.<?php echo $row['price']; ?></p>
+						</div>
+								 <!-- <--end of single product-->  
+								
+								 <td> <div class='box' style="border-radius: 50px;margin-left: 695px;">
+								 <h1>Categories</h1>
+								 <h1>looking for more products.... Click below for more <?php echo $title ?> </h1>
+					<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" style="width: 200px;">
+					<h3>
+						<?php echo $title ?>
+					</h3>
+					<p>Upto
+						<?php echo $discount ?>
+					</p>
+					<a href='/Grocery/categories_detail.php?category=<?php echo $id; ?>' class='btn'>shop now</a>
+				</div>
+			</td>
+				<?php
 			}
 		} else {
 			echo "No results found.";
 		}
 	}
-
 	?>
 	</div>
 	</div>
-	<div class="title">
+	</th>
+     
+			</tr>
+			</tbody>
+				</table>
 
+				<!--product -->
+				
+	<!--Banner-->
+	<div class="title">
 		<h1 class="heading" style="font-size: 20px; margin-top: -45px;"> Welcome <span>
 				<?php
 				if (!isset($_SESSION['name'])) {
@@ -224,30 +252,20 @@ if (!isset($_SESSION['user_name'])) {
 				}
 				?>
 			</span> </h1>
-
-
 		<div class="banner">
 			<div class="slider">
 				<img src="/Grocery/storage/image/pexels-carlo-martin-alcordo-2449665 (1).jpg" id="slideImg" alt=""
 					srcset="" style="border-radius:72px;">
 			</div>
 			<div class="overlay" style="border-radius:72px">
-				<div class="content">
+				<div class="content1">
 					<h1>Fresh And <span class="span"> Organic </span>Products For You</h1>
 					<br><br>
-					<p style="font-size:14px;">An online grocer is either a brick-and-mortar supermarket or grocery
-						store that allows online
-						ordering,
-						or a standalone e-commerce service that includes grocery items. There is usually a delivery
-						charge
-						for
-						this service.</p>
+					<p style="font-size:14px;">An online grocer is either a brick-and-mortar supermarket or grocery store that allows online ordering,or a standalone e-commerce service that includes grocery items. There is usually a delivery charge for this service.</p>
 					<br><br><br><br><br><br><br><br><br><br><br>
 					<div>
-						<button type="button" class="shop"> <a href="/Grocery/html/product-details/details.php">Shop
-								Now</a>
+						<button type="button" class="shop"> <a href="/Grocery/html/product-details/details.php">Shop Now</a>
 						</button>
-
 					</div>
 				</div>
 			</div>
@@ -272,62 +290,13 @@ if (!isset($_SESSION['user_name'])) {
 			slideImg.src = images[i];
 			i++;
 			setTimeout('slider()', 5000);
-
 		}
 	</script>
-
-
-
-
-
-
-
-
-
-	<!--Banner Section-->
-	<!-- <div class="banner">
-			<div class="slider">
-		<div class="home" id="home">
-			<section class="content">
-				<h3>Fresh And <span> Organic </span>Products For You</h3>
-				<p>An online grocer is either a brick-and-mortar supermarket or grocery store that allows online
-					ordering,
-					or a standalone e-commerce service that includes grocery items. There is usually a delivery charge
-					for
-					this service.</p>
-				<a href="/Grocery/html/product-details/details.php" class="btn">shop now</a>
-		</div>
-			</div>
-		</div>
-		</section>
-		<script>
-			var sliderImg = document.getElementById("slideImg");
-			var images = new Array(
-				"D:\xampp\htdocs\Grocery/storage/image/product-1.png",
-				"/Grocery/storage/image/banner-img.jpg",
-				"/Grocery/storage/image/banner-img.jpg",
-				"/Grocery/storage/image/banner-img.jpg"
-			);
-			var len = images.length;
-			var i=0;
-			function slider(){
-				if(i > len-1){
-					i=0;
-				}
-				sliderImg.src = images[i];
-				i++;
-				setTimeout('slider()',3000);
-
-			}
-		</script> -->
-	<!--Banner Section-->
-
+	<!--Banner-->
 	<!--Feature Section-->
 	<section class="features" id="features">
 		<h1 class="heading"> our <span>features</span> </h1>
 		<div class="card-body">
-
-
 			<div class="box-container">
 				<?php
 				$select_query = "select * from feature";
@@ -349,7 +318,6 @@ if (!isset($_SESSION['user_name'])) {
 						<a href='/Grocery/html/Read More/feature.php?feature=<?php echo $id; ?>' class='btn'
 							name="submit">read more</a>
 					</div>
-
 					<?php
 				}
 				?>
@@ -358,7 +326,6 @@ if (!isset($_SESSION['user_name'])) {
 		</div>
 	</section>
 	<!--Feature Section-->
-
 	<!--Products Section-->
 	<section class="products" id="products">
 		<h1 class="heading"> our <span>products</span> </h1>
@@ -381,7 +348,6 @@ if (!isset($_SESSION['user_name'])) {
 					$product_image = $row['featured_image'];
 					$quantity = $row['qty'];
 					?>
-
 					<div class='swiper-slide box' style=" border-radius: 50px;">
 						<img src="/Grocery/storage/image/<?php echo $row['featured_image'] ?>" />
 						<h1>
@@ -405,16 +371,12 @@ if (!isset($_SESSION['user_name'])) {
 							<br>
 							<a href="/Grocery/html/product-details/details.php" class="btn">Read More</a>
 						</div>
-
 					</div>
-
 					<?php
 				}
 				?>
-
 			</div>
 		</div>
-
 	</section>
 	<!--Products Section-->
 
@@ -428,11 +390,9 @@ if (!isset($_SESSION['user_name'])) {
 			while ($row = mysqli_fetch_assoc($result_query)) {
 				$id = $row['id'];
 				$title = $row['title'];
-
 				$image = $row['image'];
 				$discount = $row['discount'];
 				?>
-
 				<div class='box' style=" border-radius: 50px;">
 					<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" alt=''>
 					<h3>
@@ -446,18 +406,15 @@ if (!isset($_SESSION['user_name'])) {
 				<?php
 			}
 			?>
-
 		</div>
 	</section>
 	<!--Categories Section-->
 
 	<!--Review Section-->
-
 	<section class="review" id="review">
 		<h1 class="heading">Customer's <span>Review</span> </h1>
 		<div class="swiper review-slider">
 			<div class="swiper-wrapper">
-
 				<?php
 				$select_query = "SELECT * FROM `review` WHERE role = 1";
 				$result_query = mysqli_query($con, $select_query);
@@ -483,20 +440,13 @@ if (!isset($_SESSION['user_name'])) {
 							<i class="fa fa-stars-half"></i>
 						</div>
 					</div>
-
-
-
 					<?php
 				}
 				?>
-
 			</div>
 		</div>
-
-
 	</section>
 	<!--Review Section-->
-
 	<!--Blog Section-->
 	<section class="blogs" id="blogs">
 		<h1 class="heading">Our <span>blogs</span> </h1>
@@ -517,7 +467,6 @@ if (!isset($_SESSION['user_name'])) {
 					<a href="" class="btn">Read More</a>
 				</div>
 			</div>
-
 			<div class="box" style=" border-radius: 50px;">
 				<img src="/Grocery/storage/image/blog-2.jpg" alt="" srcset="">
 				<div class="content">
@@ -534,27 +483,26 @@ if (!isset($_SESSION['user_name'])) {
 					<a href="" class="btn">Read More</a>
 				</div>
 			</div>
-
 			<div class="box" style=" border-radius: 50px;">
 				<img src="/Grocery/storage/image/blog-3.jpg" alt="" srcset="">
 				<div class="content">
-					<d iv class="icons">
+					<div class="icons">
 						<a href="#"><i class="fa fa-user"></i>By User</a>
 						<a href="#"><i class="fa fa-calender"></i>1st May, 2021</a>
+					</div>
+					<h3>Fresh and Organic Vegetables and Fruits</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+						been
+						the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+						galley
+						of type and scrambled it to make a type specimen book.</p>
+					<a href="" class="btn">Read More</a>
 				</div>
-				<h3>Fresh and Organic Vegetables and Fruits</h3>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-					been
-					the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-					galley
-					of type and scrambled it to make a type specimen book.</p>
-				<a href="" class="btn">Read More</a>
 			</div>
 		</div>
-		</div>
+		
 	</section>
 	<!--Blog Section-->
-
 
 	<!--Footer Section-->
 	<!--Footer Section(Insert Query)-->
@@ -562,7 +510,6 @@ if (!isset($_SESSION['user_name'])) {
 	include('D:\xampp\htdocs\Grocery\app\review\insert.php');
 	?>
 	<h1 class="heading">Write<span>Review</span> </h1>
-
 	<div class="box">
 		<div class="footer">
 			<div class="col-1" style="font-size: 2rem;">
@@ -580,10 +527,8 @@ if (!isset($_SESSION['user_name'])) {
 					<div class="mb-5">
 						<label for="formFile" class="form-label">Upload Image</label>
 						<input class="form-control" type="file" name="photo" id="formFile">
-
 					</div>
 					<!--Image-->
-
 
 					<!--Name-->
 					<div class="mb-3">
@@ -607,16 +552,8 @@ if (!isset($_SESSION['user_name'])) {
 				<p>123, XYZ Road, Banglore</p>
 			</div>
 			<div class="social-links">
-
 			</div>
-
 			<!--Footer Section-->
-
 			<script src="js/slider.js"></script>
-
-
-
-
 </body>
-
 </html>

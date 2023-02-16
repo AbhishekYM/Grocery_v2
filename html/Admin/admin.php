@@ -7,56 +7,47 @@ if (!isset($_SESSION['name'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard Panel</title>
-
 </head>
-
 <body>
     <?php
     include "D:/xampp/htdocs/Grocery/app/master/nav.php";
     ?>
     <div class="dash-content">
         <div class="overview">
-            <div class="title">
-
+            <div class="title" style="margin: 8px;">
                 <h3>hi, <span>
                         <?php echo $_SESSION['name'] ?>
                     </span></h3>
                 &nbsp;
                 <h3>welcome </h3>
-
                 </span> </h1>
             </div>
-            <div class="title">
+            <div class="title" style="margin:8px;">
                 <span class="text">Dashboard</span>
             </div>
             <div class="boxes">
                 <div class="box box1">
-                    
                     <?php
                     $sql = "SELECT COUNT(id) AS total from product;";
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-
                     <a href="product.php" class="text">Product</a>
                     <span class="number">
                         <?php echo $rowsselectCount['total']; ?>
                     </span>
                 </div>
                 <div class="box box2">
-                    
                     <?php
                     $sql = "SELECT COUNT(type) AS total from user where type='user';";
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-
                     <a href="user.php" class="text">Customer</a>
                     <span class="number">
                         <?php echo $rowsselectCount['total']; ?>
@@ -65,11 +56,10 @@ if (!isset($_SESSION['name'])) {
                     <span class="number">20,120</span> -->
                 </div>
                 <div class="box box3">
-                    
                     <a class="text">Total orders</a>
-                    <span class="number">1000</span>
+                    <span class="number">1000
+                    </span>
                 </div>
-
             </div>
             <br>
             <div class="boxes">
@@ -79,28 +69,23 @@ if (!isset($_SESSION['name'])) {
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-
                     <a href="categories.php" class="text">Categories</a>
                     <span class="number">
                         <?php echo $rowsselectCount['total']; ?>
                     </span>
-
                 </div>
                 <div class="box box3">
-                    
                     <?php
                     $sql = "SELECT COUNT(id) AS total from feature;";
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-
                     <a href="feature.php" class="text">Features</a>
                     <span class="number">
                         <?php echo $rowsselectCount['total']; ?>
                     </span>
                 </div>
                 <div class="box box3">
-                    
                     <?php
                     $sql = "SELECT COUNT(id) AS total from category;";
                     $execute = mysqli_query($con, $sql);
@@ -111,12 +96,25 @@ if (!isset($_SESSION['name'])) {
                         <?php echo $rowsselectCount['total']; ?>
                     </span>
                 </div>
+                &nbsp;
             </div>
-
+            <br>
+            <div class="boxes">
+                <div class="box box3">
+                    <?php
+                    $sql = "SELECT COUNT(id) AS total from blog;";
+                    $execute = mysqli_query($con, $sql);
+                    $rowsselectCount = mysqli_fetch_array($execute);
+                    ?>
+                    <a href="blog.php" class="text">Blogs</a>
+                    <span class="number">
+                        <?php echo $rowsselectCount['total']; ?>
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="activity">
             <div class="title">
-                
                 <span class="text">Recent Activity</span>
             </div>
             <div class="activity-data">
@@ -182,7 +180,5 @@ if (!isset($_SESSION['name'])) {
         </div>
         </form>
         <script src="/Grocery/html/Admin/script.js"></script>
-
     </body>
-
     </html>
