@@ -1,9 +1,13 @@
+
 <?php
-include 'D:\xampp\htdocs\Grocery\app\product\insert.php';
+session_start();
+if (!isset($_SESSION['name'])) {
+    header('location:/Grocery/html/Admin/login.php');
+}
 ?>
 
 <?php
-include 'D:\xampp\htdocs\Grocery\database\connection.php';
+include '/var/www/html/Grocery/database/connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,15 +21,16 @@ include 'D:\xampp\htdocs\Grocery\database\connection.php';
 
 <body class="bg-light">
     <?php
-    include "D:/xampp/htdocs/Grocery/app/master/nav.php";
+    include "/var/www/html/Grocery/app/master/nav.php";
+    include "/var/www/html/Grocery/app/product/insert.php";
     ?>
     <br>
     <br>
+    <form action="/Grocery/app/product/insert.php" method="post" enctype="multipart/form-data">
     <div class="container mt-3">
-        <h1 class="text-center">Insert Products</h1>
+        <br><br>
+        <h1 class="text-center"style="color:#2697FF;">Insert Products</h1>
         <!--Form-->
-        <form action="" method="post" enctype="multipart/form-data">
-           
                 <!--Product-Code-->
             <div class="form-outline mb-4 w-50 m-auto">
                 <label for="product_descrption" class="form-label">Product Code</label>
@@ -65,15 +70,7 @@ include 'D:\xampp\htdocs\Grocery\database\connection.php';
                     <option value="">Category3</option> -->
                 </select>
             </div>
-            <!--Brands-->
-            <div class="form-outline mb-4 w-50 m-auto">
-                <select name="product_brand" id="" class="form-select">
-                    <option value="">Select a brand</option>
-                    <option value="">Brand1</option>
-                    <option value="">Brand2</option>
-                    <option value="">Brand3</option>
-                </select>
-            </div>
+          
             <!--Image-->
             <div class="form-outline mb-4 w-50 m-auto">
                 <label for="product_image" class="form-label">Product Image</label>
@@ -98,6 +95,11 @@ include 'D:\xampp\htdocs\Grocery\database\connection.php';
                 <input type="text" name="status" id="status" class="form-control"
                     placeholder="Enter product quantity" autocomplete="off" required>
             </div>
+               <!--Status-->
+               <div class="form-outline mb-4 w-50 m-auto">
+               <input type="hidden" name="category_id"  class="form-control" value="<?php echo $category_id?>">
+               <?php echo $category_id;?>
+            </div>
             <!--Button-->
             <div class="form-outline mb-4 w-50 m-auto">
                 <input type="submit" name="insert_product" class="btn btn-info mb-3 px-3" value="Insert Products">
@@ -105,8 +107,8 @@ include 'D:\xampp\htdocs\Grocery\database\connection.php';
 
         </form>
     </div>
-    <script src="/Final_Project/admin/script.js"></script>
-    <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+    <!-- <script src="/Final_Project/admin/script.js"></script> -->
+    <!-- <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script> -->
 </body>
 
 </html>

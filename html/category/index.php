@@ -9,7 +9,7 @@
     </head>
     <body>
     <?php
-	include "D:/xampp/htdocs/Grocery/html/master/nav.php";
+	include "/var/www/html/Grocery/database/connection.php";
 	?>
     
     </body>

@@ -1,5 +1,5 @@
 <?php
-include 'D:/xampp/htdocs/Grocery/database/connection.php';
+include '/var/www/html/Grocery/database/connection.php';
 if(isset($_GET['deleteid']))
 {
     $id = $_GET['deleteid'];

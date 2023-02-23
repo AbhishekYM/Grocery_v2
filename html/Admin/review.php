@@ -1,5 +1,11 @@
 <?php
-include('D:/xampp/htdocs/Grocery/database/connection.php');
+include('/var/www/html/Grocery/database/connection.php');
+?>
+<?php
+session_start();
+if (!isset($_SESSION['name'])) {
+    header('location:/Grocery/html/Admin/login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,26 +18,29 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
 </head>
 <body>
     <?php
-    include "D:/xampp/htdocs/Grocery/app/master/nav.php";
+    include "/var/www/html/Grocery/app/master/nav.php";
     
     ?>
     <img src="image/image/logo.png" alt="">
     </div>
     <br>
     <br>
+    <br>
+    <br>
+    <center><h1 style="color:#2697FF;">Reviews</h1></center>
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">id</th>
-                <th scope="col">photo</th>
-                <th scope="col">description</th>
-                <th scope="col">name</th>
-                <th scope="col">operations</th>
+                <th scope="col">ID</th>
+                <th scope="col">PHOTO</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">NAME</th>
+                <th scope="col">OPERATIONS</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            include 'D:\xampp\htdocs\Grocery\app\review\display.php';
+            include '/var/www/html/Grocery/app/review/display.php';
             ?>
           
         </tbody>

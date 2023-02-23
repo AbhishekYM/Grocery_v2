@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SESSION['user_name'])) {
 }
 ?>
@@ -7,8 +6,14 @@ if (!isset($_SESSION['user_name'])) {
 <html>
 
 <head>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-	<link rel="stylesheet" href="/Grocery/html/product-details/style.css">
+	<script>
+		window.onload = function () {
+			document.getElementById('preloader').style.display = "none";
+			document.getElementById('abc ').style.display = "block";
+		}
+	</script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
+	<link rel="stylesheet" href="/var/www/html/Grocery/html/product-details/style.css">
 	<meta cha set="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Grocery Store</title>
@@ -122,12 +127,15 @@ if (!isset($_SESSION['user_name'])) {
 	</style>
 </head>
 
-<body onload="slider()">
+<body onload="myFunction()">
 	<?php
 	include "html/master/nav.php";
 	?>
-	
+
 	<br><br><br><br>
+	<div id="loading">
+		<!-- <img src="/Grocery/storage/image/loader.gif" alt=""> -->
+	</div>
 	<form action="" class="search-form" method="post" style="margin-left:476px;">
 		<!-- <input type="search" id="search-box" placeholder="search" name="searchTerm"> -->
 		<!-- <label for="search-box" class="fa fa-search"></label> -->
@@ -152,94 +160,100 @@ if (!isset($_SESSION['user_name'])) {
 		// $category = "SELECT * FROM category WHERE title LIKE '%$searchTerm%'";
 		// $sql = "SELECT * FROM product Join table category ON product.id = category.id where product_title LIKE '%$searchTerm%' OR category.title LIKE '%$searchTerm%'";
 		$sql = "SELECT * from product as t1 JOIN category as t2 ON t1.id = t2.product_id where t1.title LIKE '%$searchTerm%'OR t2.title LIKE '%$searchTerm%' ORDER BY t1.title DESC";
-		
+
 		$result = mysqli_query($con, $sql);
 		if (mysqli_num_rows($result) > 0) {
-			while ($row = mysqli_fetch_assoc($result)) { 
+			while ($row = mysqli_fetch_assoc($result)) {
 				$id = $row['id'];
 				$title = $row['title'];
 				$image = $row['image'];
 				$discount = $row['discount'];
 				?>
 				<table class=" table-bordered">
-  <thead>
-    <tr>
-      
-    
-			</th>
-			</thead>
-			<tbody>
-    <tr>
-      <th scope="row">
-	<div class="split left">
-  <div class="centered">
-	
-	  <div class="product" style="margin-left:106px;">
-						<div class="product-content" style="width:10%;">
-							<div class="product-img">
-								<h1>Products</h1>
-								<img src="/Grocery/storage/image/<?php echo $row['featured_image']; ?>" alt="product image">
-							</div>
-						</div>
-						<br>
-						<div>
-							<button type="button" class="btn-cart"onclick="addToCart(<?php echo $row['id']; ?>,<?php echo $userId; ?>,<?php echo $row['qty']; ?>,'<?php echo $row['description']; ?>')">
-							add to cart
-							<span><i class="fas fa-plus"></i></span>
-							</button>
-							<button type="button" class="btn-buy"> <a href="/Grocery/html/payment/payment.php">buy now</a>
-							<span><i class="fas fa-shopping-cart"></i></span>
-							</button>
-						</div>
-						<div class="product-info" style="margin: 5px;width: 249px;">
-							<div class="product-info-top">
-								<h2 class="sm-title">lifestyle</h2>
-									<div class='stars'>
-										<i class='fa fa-star'></i>
-										<i class='fa fa-star'></i>
-										<i class='fa fa-star'></i>
-										<i class='fa fa-star'></i>
-										<i class='fa fa-star-half'></i>
-										<br>
-									</div>
-							</div>
-									<a href="#" class="product-name">
-									<?php echo $row['description']; ?>
-									</a>
-									<p class="">RS.<?php echo $row['price']; ?></p>
-						</div>
-								 <!-- <--end of single product-->  
-								
-								 <td> <div class='box' style="border-radius: 50px;margin-left: 695px;">
-								 <h1>Categories</h1>
-								 <h1>looking for more products.... Click below for more <?php echo $title ?> </h1>
-					<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" style="width: 200px;">
-					<h3>
-						<?php echo $title ?>
-					</h3>
-					<p>Upto
-						<?php echo $discount ?>
-					</p>
-					<a href='/Grocery/categories_detail.php?category=<?php echo $id; ?>' class='btn'>shop now</a>
-				</div>
-			</td>
-				<?php
+					<thead>
+						<tr>
+							</th>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">
+								<div class="split left">
+									<div class="centered">
+
+										<div class="product" style="margin-left:106px;">
+											<div class="product-content" style="width:10%;">
+												<div class="product-img">
+													<h1>Products</h1>
+													<img src='/Grocery/storage/image<?php echo $row['featured_image']; ?>'
+														alt="product image">
+												</div>
+											</div>
+											<br>
+											<div>
+												<button type="button" class="btn-cart"
+													onclick="addToCart(<?php echo $row['id']; ?>,<?php echo $userId; ?>,<?php echo $row['qty']; ?>,'<?php echo $row['description']; ?>')">
+													add to cart
+													<span><i class="fas fa-plus"></i></span>
+												</button>
+												<button type="button" class="btn-buy"> <a
+														href="/Grocery/html/payment/payment.php">buy now</a>
+													<span><i class="fas fa-shopping-cart"></i></span>
+												</button>
+											</div>
+											<div class="product-info" style="margin: 5px;width: 249px;">
+												<div class="product-info-top">
+													<h2 class="sm-title">lifestyle</h2>
+													<div class='stars'>
+														<i class='fa fa-star'></i>
+														<i class='fa fa-star'></i>
+														<i class='fa fa-star'></i>
+														<i class='fa fa-star'></i>
+														<i class='fa fa-star-half'></i>
+														<br>
+													</div>
+												</div>
+												<a href="#" class="product-name">
+													<?php echo $row['description']; ?>
+												</a>
+												<p class="">RS.
+													<?php echo $row['price']; ?>
+												</p>
+											</div>
+											<!-- <--end of single product-->
+
+							<td>
+								<div class='box' style="border-radius: 50px;margin-left: 695px;">
+									<h1>Categories</h1>
+									<h1>looking for more products.... Click below for more
+										<?php echo $title ?>
+									</h1>
+									<img src="/Grocery/storage/image<?php echo $row['image'] ?>" style="width: 200px;">
+									<h3>
+										<?php echo $title ?>
+									</h3>
+									<p>Upto
+										<?php echo $discount ?>
+									</p>
+									<a href='/Grocery/index.php?category=<?php echo $id; ?>' class='btn'>shop now</a>
+								</div>
+							</td>
+							<?php
 			}
 		} else {
 			echo "No results found.";
 		}
 	}
 	?>
-	</div>
-	</div>
-	</th>
-     
-			</tr>
-			</tbody>
-				</table>
+				</div>
+				</div>
+				</th>
 
-				<!--product -->
-				
+			</tr>
+		</tbody>
+	</table>
+
+	<!--product -->
+
 	<!--Banner-->
 	<div class="title">
 		<h1 class="heading" style="font-size: 20px; margin-top: -45px;"> Welcome <span>
@@ -257,14 +271,17 @@ if (!isset($_SESSION['user_name'])) {
 				<img src="/Grocery/storage/image/pexels-carlo-martin-alcordo-2449665 (1).jpg" id="slideImg" alt=""
 					srcset="" style="border-radius:72px;">
 			</div>
-			<div class="overlay" style="border-radius:72px">
+			<div class="overlay" style="border-radius:7px">
 				<div class="content1">
 					<h1>Fresh And <span class="span"> Organic </span>Products For You</h1>
 					<br><br>
-					<p style="font-size:14px;">An online grocer is either a brick-and-mortar supermarket or grocery store that allows online ordering,or a standalone e-commerce service that includes grocery items. There is usually a delivery charge for this service.</p>
+					<p style="font-size:14px;">An online grocer is either a brick-and-mortar supermarket or grocery
+						store that allows online ordering,or a standalone e-commerce service that includes grocery
+						items. There is usually a delivery charge for this service.</p>
 					<br><br><br><br><br><br><br><br><br><br><br>
 					<div>
-						<button type="button" class="shop"> <a href="/Grocery/html/product-details/details.php">Shop Now</a>
+						<button type="button" class="shop"> <a href="/Grocery/html/product-details/details.php">Shop
+								Now</a>
 						</button>
 					</div>
 				</div>
@@ -341,7 +358,7 @@ if (!isset($_SESSION['user_name'])) {
 					$product_id = $row['id'];
 					$code = $row['code'];
 					$product_category = $row['category'];
-					$product_brand = $row['brand'];
+					
 					$product_title = $row['title'];
 					$product_price = $row['price'];
 					$description = $row['description'];
@@ -353,7 +370,7 @@ if (!isset($_SESSION['user_name'])) {
 						<h1>
 							<?php echo $product_title ?>
 						</h1>
-						<div class='price'>
+						<div class='price'>Price:
 							<?php echo $product_price ?>
 						</div>
 						<div class='description'>
@@ -369,7 +386,7 @@ if (!isset($_SESSION['user_name'])) {
 							<i class='fa fa-star'></i>
 							<i class='fa fa-star-half'></i>
 							<br>
-							<a href="/Grocery/html/product-details/details.php" class="btn">Read More</a>
+							<a href="/Grocery/html/product-details/details.php" class="btn">Add to Cart</a>
 						</div>
 					</div>
 					<?php
@@ -393,7 +410,7 @@ if (!isset($_SESSION['user_name'])) {
 				$image = $row['image'];
 				$discount = $row['discount'];
 				?>
-				<div class='box' style=" border-radius: 50px;">
+				<div class="box" style=" border-radius: 50px;">
 					<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" alt=''>
 					<h3>
 						<?php echo $title ?>
@@ -401,7 +418,7 @@ if (!isset($_SESSION['user_name'])) {
 					<p>Upto
 						<?php echo $discount ?>
 					</p>
-					<a href='/Grocery/categories_detail.php?category=<?php echo $id; ?>' class='btn'>shop now</a>
+					<a href='/Grocery/categories_detail.php?category=<?php echo $id; ?>' class='btn'>View More</a>
 				</div>
 				<?php
 			}
@@ -451,85 +468,84 @@ if (!isset($_SESSION['user_name'])) {
 	<section class="blogs" id="blogs">
 		<h1 class="heading">Our <span>blogs</span> </h1>
 		<div class="box-container">
+		<?php
+			$select_query = "select * from blog ";
+			$result_query = mysqli_query($con, $select_query);
+			while ($row = mysqli_fetch_assoc($result_query)) {
+				$id = $row['id'];
+				$image = $row['image'];
+				$date = $row['date'];
+				$description = $row['description'];
+				?>
 			<div class="box" style=" border-radius: 50px;">
-				<img src="/Grocery/storage/image/blog-1.jpg" alt="" srcset="">
+				<img src="/Grocery/storage/image<?php echo $row['image']?>"  alt="" srcset="">
 				<div class="content">
 					<div class="icons">
 						<a href="#"><i class="fa fa-user"></i>By User</a>
-						<a href="#"><i class="fa fa-calender"></i>1st May, 2021</a>
+						<a href="#"><i class="fa fa-calender"></i><?php echo $row['date']?></a>
 					</div>
-					<h3>Fresh and Organic Vegetables and Fruits</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-						been
-						the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-						galley
-						of type and scrambled it to make a type specimen book.</p>
+					<h3><?php echo $row['title']?></h3>
+					<p><?php echo $row['description']?></p>
 					<a href="" class="btn">Read More</a>
 				</div>
 			</div>
-			<div class="box" style=" border-radius: 50px;">
-				<img src="/Grocery/storage/image/blog-2.jpg" alt="" srcset="">
-				<div class="content">
-					<div class="icons">
-						<a href="#"><i class="fa fa-user"></i>By User</a>
-						<a href="#"><i class="fa fa-calender"></i>1st May, 2021</a>
-					</div>
-					<h3>Fresh and Organic Vegetables and Fruits</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-						been
-						the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-						galley
-						of type and scrambled it to make a type specimen book.</p>
-					<a href="" class="btn">Read More</a>
-				</div>
+				<?php
+			}
+			?>
 			</div>
-			<div class="box" style=" border-radius: 50px;">
-				<img src="/Grocery/storage/image/blog-3.jpg" alt="" srcset="">
-				<div class="content">
-					<div class="icons">
-						<a href="#"><i class="fa fa-user"></i>By User</a>
-						<a href="#"><i class="fa fa-calender"></i>1st May, 2021</a>
-					</div>
-					<h3>Fresh and Organic Vegetables and Fruits</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-						been
-						the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-						galley
-						of type and scrambled it to make a type specimen book.</p>
-					<a href="" class="btn">Read More</a>
-				</div>
-			</div>
-		</div>
 		
 	</section>
 	<!--Blog Section-->
 
 	<!--Footer Section-->
-	<!--Footer Section(Insert Query)-->
 	<?php
-	include('D:\xampp\htdocs\Grocery\app\review\insert.php');
+	include('/var/www/html/Grocery/app/review/insert.php');
 	?>
-	<h1 class="heading">Write<span>Review</span> </h1>
-	<div class="box">
-		<div class="footer">
-			<div class="col-1" style="font-size: 2rem;">
-				<h3>UseFull Links</h3>
-				<a href="">About</a>
-				<a href="">Services</a>
-				<a href="">Contact</a>
-				<a href="">Shop</a>
-				<a href="">Bog</a>
-			</div>
-			<div class="col-2" style="font-size: 2rem;">
-				<h3>Write a Review</h3>
-				<form action="" method="post" enctype="multipart/form-data">
-					<!--Image-->
-					<div class="mb-5">
-						<label for="formFile" class="form-label">Upload Image</label>
-						<input class="form-control" type="file" name="photo" id="formFile">
-					</div>
-					<!--Image-->
 
+	<!--Footer Section-->
+
+
+
+	<!--Footer Section-->
+
+	<form action="" method="post" enctype="multipart/form-data">
+		
+		<h1 class="heading">More<span>Info</span> </h1>
+		<section class="footer" style="margin: -20px;">
+
+			<div class="box-container">
+				<div class="box">
+					<h3>GROCO <i class="fa fa-shopping-basket "></i> </h3>
+					<p>Welcome to our Website. We Provide Fresh and Hygenic Products</p>
+					<div class="share">
+						<a href="" class="fa fa-facebook"></a>
+						<a href="" class="fa fa-instagram"></a>
+						<a href="" class="fa fa-linkedin"></a>
+					</div>
+				</div>
+				<div class="box">
+					<h3>Contact Info</h3>
+					<a href="#" class="links"> <i class="fa fa-phone"></i>+91 8160646216 </a>
+					<a href="#" class="links"> <i class="fa fa-phone"></i>+91 8160646216 </a>
+					<a href="#" class="links"> <i class="fa fa-phone"></i>+91 8160646216 </a>
+					<a href="#" class="links"> <i class="fa fa-envelope"></i>info@groco.com </a>
+					<a href="#" class="links"> <i class="fa fa-marker"></i>Pune, India </a>
+				</div>
+
+				<div class="box">
+					<h3>Quick Links</h3>
+					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Home</a>
+					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Feature</a>
+					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Products</a>
+					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Categories</a>
+					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Review</a>
+					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Blogs</a>
+				</div>
+
+				<div class="box">
+					<h3>Reviews</h3>
+					<p>Provide us rerview</p>
+					<input type="file" placeholder="Your review" class="email" name="photo" id="formFile">
 					<!--Name-->
 					<div class="mb-3">
 						<label for="exampleFormControlInput1" class="form-label">Enter Name</label>
@@ -537,23 +553,35 @@ if (!isset($_SESSION['user_name'])) {
 							placeholder="name@example.com">
 					</div>
 					<!--Name-->
-
 					<!--Description-->
-					<div class="form-floating">
+					<!-- <div class="form-floating">
 						<textarea class="form-control" name="description" placeholder="Leave a review here"
-							id="floatingTextarea"></textarea>
-					</div><br>
+						id="floatingTextarea"></textarea>
+					</div> -->
+
+
+					<div class="mb-3">
+						<!-- <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label> -->
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"
+							placeholder="Leave a review here"></textarea>
+					</div>
+					<br>
 					<!--Description-->
+					<!-- <input type="button" value="Subscribe" class="btn" name="insert_review"> -->
 					<button type="submit" name="insert_review" class="btn">Submit Now</button>
-				</form>
+				</div>
 			</div>
-			<div class="col-3" style="font-size: 2rem;">
-				<h3>Address</h3>
-				<p>123, XYZ Road, Banglore</p>
-			</div>
-			<div class="social-links">
-			</div>
-			<!--Footer Section-->
-			<script src="js/slider.js"></script>
+		</section>
+	</form>
+	<!--Footer Section-->
+	<script src="js/slider.js"></script>
+	<script>
+		var preloader = document.getElementById('loading');
+		function myFunction() {
+			preloader.style.display = 'none';
+		}
+	</script>
+
 </body>
+
 </html>

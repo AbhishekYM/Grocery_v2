@@ -1,5 +1,5 @@
 <?php
-include 'D:\xampp\htdocs\Grocery\database\connection.php';
+include '/var/www/html/Grocery/database/connection.php';
 $sql = "select * from user where type='user'" ;
 $result = mysqli_query($con, $sql);
 if ($result) {
@@ -15,7 +15,7 @@ if ($result) {
             <td><?php echo $row['mobile']?></td>
             <td>
                 
-                <button class="btn btn-danger"><a class="text-light" href="/Grocery/app/user/delete.php?deleteid=<?php echo $row['id'] ?>">Delete</a></button>
+                <a class="fa fa-trash" class="btn btn-outline-danger" class="text-light" href="/Grocery/app/user/delete.php?deleteid=<?php echo $row['id'] ?>" style="color:red;"></a>
             </td>
         </tr>
         <?php

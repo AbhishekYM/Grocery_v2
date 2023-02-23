@@ -1,5 +1,5 @@
 <?php
-	include 'D:\xampp\htdocs\Grocery\database\connection.php';
+	include '/var/www/html/Grocery/database/connection.php';
 	if (isset($_POST['insert_review'])) {
 		$photo = $_FILES['photo']['name'];
 		$description = $_POST['description'];

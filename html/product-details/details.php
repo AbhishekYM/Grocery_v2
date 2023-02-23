@@ -1,5 +1,5 @@
 <?php
-include 'D:\xampp\htdocs\Grocery\database\connection.php';
+include '/var/www/html/Grocery/database/connection.php';
 $select_query = "SELECT * FROM product";
 $result_query = mysqli_query($con, $select_query);
 $userId = 2;
@@ -15,9 +15,12 @@ $userId = 2;
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <!-- font awesome -->
 </head>
-<body>
+<body  onload="myFunction()">
+<div id="loading">
+		<!-- <img src="/Grocery/storage/image/loader.gif" alt=""> -->
+	</div>
 <?php
-	include "D:/xampp/htdocs/Grocery/html/master/nav.php";
+	include "/var/www/html/Grocery/html/master/nav.php";
 	?>
   <div class="products">
     <div class="container">
@@ -46,11 +49,11 @@ $userId = 2;
                 <h2 class="sm-title">lifestyle</h2>
                
                 <div class='stars'>
-							<i class='fa fa-star'></i>
-							<i class='fa fa-star'></i>
-							<i class='fa fa-star'></i>
-							<i class='fa fa-star'></i>
-							<i class='fa fa-star-half'></i>
+							    <i class='fa fa-star'></i>
+							    <i class='fa fa-star'></i>
+							    <i class='fa fa-star'></i>
+							    <i class='fa fa-star'></i>
+							    <i class='fa fa-star-half'></i>
 							<br>
 						</div>
               </div>
@@ -58,7 +61,9 @@ $userId = 2;
                 <?php echo $row['description']; ?>
               </a>
              
-              <p class="">$ 133.00</p>
+              <p class=""> Price:
+              <?php echo $row['price'] ?>
+              </p>
             </div>
             <div class="off-info">
             </div>
@@ -70,11 +75,16 @@ $userId = 2;
       </div>
     </div>
     <!-- product col right -->
-    
 </body>
 </html>
 </body>
 </html>
 <script src="script.js"></script>
+<script>
+			var preloader = document.getElementById('loading');
+			function myFunction(){
+				preloader.style.display = 'none';
+			}
+		</script>
 </body>
 </html>

@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+session_start();
+if (!isset($_SESSION['name'])) {
+    header('location:/Grocery/html/Admin/login.php');
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,14 +15,14 @@
 
 <body class="bg-light">
     <?php
-    include "D:/xampp/htdocs/Grocery/app/master/nav.php";
+    include "/var/www/html/Grocery/app/master/nav.php";
     ?>
     <?php
-    include 'D:/xampp/htdocs/Grocery/app/category/update.php';
+    include '/var/www/html/Grocery/app/category/update.php';
     ?>
-    <br>
-    <br>
+    <br><br>
     <div class="container mt-3">
+        <br>
         <h1 class="text-center">Update Categories</h1>
         <!--Form-->
         <form action="/Grocery/app/category/update.php" method="post" enctype="multipart/form-data" id="cat_image">
@@ -29,6 +35,11 @@
             <div class="form-outline mb-4 w-50 m-auto">
                 <label for="cat_image" class="form-label">Category Image</label>
                 <input type="file" name="cat_image" id="cat_image" class="form-control" autocomplete="off" >
+                <img src='/Grocery/storage/image/<?php echo $row['image'];?>' </div style="
+    width: 92px;
+    margin-left: 656px;
+    margin-top: -39px;
+">
             </div>
             <!--Discount-->
             <div class="form-outline mb-4 w-50 m-auto">

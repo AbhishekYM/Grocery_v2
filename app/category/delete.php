@@ -1,5 +1,5 @@
 <?php
-include 'D:/xampp/htdocs/Grocery/database/connection.php';
+include '/var/www/html/Grocery/database/connection.php';
 if(isset($_GET['deleteid']))
 {
     $id = $_GET['deleteid'];
@@ -7,7 +7,7 @@ if(isset($_GET['deleteid']))
     $result = mysqli_query($con, $sql);
     if($result)
     {
-     header('location:/Grocery/html/admin/categories.php');
+        header('location:/Grocery/html/Admin/categories.php');
     }
     else
     {

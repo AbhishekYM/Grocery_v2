@@ -1,5 +1,11 @@
 <?php
-include('D:/xampp/htdocs/Grocery/database/connection.php');
+include('/var/www/html/Grocery/database/connection.php');
+?>
+<?php
+session_start();
+if (!isset($_SESSION['name'])) {
+    header('location:/Grocery/html/Admin/login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,32 +18,33 @@ include('D:/xampp/htdocs/Grocery/database/connection.php');
 </head>
 <body>
     <?php
-    include "D:/xampp/htdocs/Grocery/app/master/nav.php";
+    include "/var/www/html/Grocery/app/master/nav.php";
     
     ?>
     <img src="image/image/logo.png" alt="">
     </div>
     <br>
     <br>
+    <center><h1 style="color:green;">Products</h1></center>
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">id</th>
-                <th scope="col">Code</th>
-                <th scope="col">Category</th>
-                <th scope="col">Brand</th>
-                <th scope="col">Title</th>
-                <th scope="col">Price</th>
-                <th scope="col">Description</th>
-                <th scope="col">Image</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Status</th>
-                <th scope="col">Operations</th>
+                <th scope="col">ID</th>
+                <th scope="col">CODE</th>
+                <th scope="col">CATEGORY</th>
+                <th scope="col">BRAND</th>
+                <th scope="col">TITLE</th>
+                <th scope="col">PRICE</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">IMAGE</th>
+                <th scope="col">QUANTITY</th>
+                <th scope="col">STATUS</th>
+                <th scope="col">OPERATIONS</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            include 'D:\xampp\htdocs\Grocery\app\product\display.php';
+            include '/var/www/html/Grocery/app/product/display.php';
             ?>
           
         </tbody>

@@ -1,5 +1,5 @@
 <?php
-include('D:/xampp/htdocs/Grocery/database/connection.php');
+include('/var/www/html/Grocery/database/connection.php');
 $id = $_GET['updateid'];
 
 $sql = "Select * from category where id=$id";
@@ -12,6 +12,7 @@ $cat_discount = $row['discount'];
 if (isset($_POST['submit'])) {
     $cat_title = $_POST['cat_title'];
     $cat_image = $_POST['cat_image'];
+    $date = date('Y-m-d H:i:s');
     $cat_discount = $_POST['cat_discount'];
 
     $sql = "update category set id=$id, title='$cat_title', image='$cat_image', discount='$cat_discount'where id=$id";

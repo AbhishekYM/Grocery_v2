@@ -1,5 +1,5 @@
 <?php
-include 'D:\xampp\htdocs\Grocery\database\connection.php';
+include '/var/www/html/Grocery/database/connection.php';
 $sql = "select * from review";
 $result = mysqli_query($con, $sql);
 if ($result) {
@@ -10,7 +10,7 @@ if ($result) {
                 <?php echo $row['id'] ?>
             </td>
             <td>
-                <?php echo $row['photo'] ?>
+            <td><img src='/Grocery/storage/image//<?php echo $row['photo'];?>' </td style="width:96px">
             </td>
             <td>
                 <?php echo $row['description'] ?>

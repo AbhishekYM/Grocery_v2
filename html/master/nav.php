@@ -1,11 +1,11 @@
 <?php
-include('D:/xampp/htdocs/Grocery/database/connection.php');
+include('/var/www/html/Grocery/database/connection.php');
 session_start();
 
 ?>
 
 <!--Code for font awesone cdn-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/Grocery/fontawesome-free-6.3.0-web/css/all.min.css">
 <!--Code for font awesone cdn-->
 
 <!--Code for linking css file-->
@@ -13,11 +13,12 @@ session_start();
 <!-- <link rel="stylesheet" type="text/css" href="/Grocery/html/product-details/style.css"> -->
 <!--Code for linking css file-->
 <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+<link rel="stylesheet" href="/Grocery/swiper/style.css">
 <link rel="icon" type="image/x-icon" class="fa fa-shopping-basket" href="">
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
 <!--Header Section-->
 <header class="header" style="padding:10px;">
-	<a href="/Grocery/#" class="logo"><i class="fa fa-shopping-basket" aria-hidden="true"></i>grocery</a>
+	<a href="/Grocery/#" class="logo"><i class="fa fa-shopping-basket" aria-hidden="true"></i>GROCO</a>
 	<nav class="navbar">
 		<a href="/Grocery/#home">Home</a>
 		<a href="/Grocery/#features">Feature</a>
@@ -71,7 +72,7 @@ session_start();
 		if (!isset($_SESSION['user_id'])) {
 			echo '<div class="fa fa-user" id="login-btn"></div>';
 		} else {
-			echo '<a href="/Grocery/app/user/logout.php"><div class="fa fa-sign-out" id="logout-btn"></div></a>';
+			echo '<a href="/var/www/html/Grocery/app/Admin/logout.php"><div class="fa fa-sign-out" id="logout-btn"></div></a>';
 		}
 		?>
 	</div>
@@ -90,13 +91,13 @@ session_start();
 				$row = mysqli_fetch_array($result);
 				$_SESSION['name'] = $row['full_name'];
 				$_SESSION['user_id'] = $row['id'];
-				if ($row['type'] == 'admin') {
+				if ($row['type'] == 'user') {
 					$_SESSION['name'];
 					// print_r($row['full_name']);
-					header(('location:/Grocery/html/Admin/admin.php'));
+					header('location:/Grocery/index.php');
 				} elseif ($row['type'] == 'user') {
 					$_SESSION['name'];
-					header(('location:/Grocery/index.php'));
+					header('location:/Grocery/index.php');
 				}
 			} else {
 				$error = "incorrect email or password";

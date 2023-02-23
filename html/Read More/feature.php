@@ -1,39 +1,8 @@
 <?php
-include 'D:\xampp\htdocs\Grocery\database\connection.php';
-include('D:\xampp\htdocs\Grocery\html\master\nav.php');
-if (isset($_POST['submit'])) {
-    $image = $_POST['image'];
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $sql = "select * from feature";
-    $result = mysqli_query($con, $sql);
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            ?>
-            <section class="about-us">
-                <div class="about">
-                    <img src="/Grocery/storage/image/<?php echo $row['image'] ?>" class="pic">
-                    <div class="text">
-                        <h2>Features</h2>
-                        <h5>
-                            <?php echo $name ?>
-                        </h5>
-                        <p>
-                            <?php echo $description ?>
-                        </p>
-                        <div class="data">
-                            <a href="#" class="hire"></a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <?php
-        }
-    }
-}
+include '/var/www/html/Grocery/database/connection.php';
+include('/var/www/html/Grocery/html/master/nav.php');
 ?>
 <!DOCTYPE html>
-<!---Coding By CoderGirl!--->
 <html lang="en">
 
 <head>
@@ -114,6 +83,13 @@ if (isset($_POST['submit'])) {
             background: #000;
             border: 1px solid #4070f4;
         }
+        #loading{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #fff url('/Grocery/storage/image/loader_dribble.gif') no-repeat center;
+    z-index: 99999;
+}
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,7 +99,10 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body  onload="myFunction()">
+<div id="loading">
+		<!-- <img src="/Grocery/storage/image/loader.gif" alt=""> -->
+	</div>
     <?php
    $id = $_GET['feature'];
    $sql = "select * from feature where id=$id";
@@ -137,7 +116,13 @@ if (isset($_POST['submit'])) {
         ?>
         <section class="about-us">
             <div class="about">
-                <img src="/Grocery/storage/image/<?php echo $row['image'] ?>" class="pic">
+            <div class="box" style=" border-radius: 100px;">
+                <img src="/Grocery/storage/image/<?php echo $row['image'] ?>" class="pic" style="
+    margin-left: -600px;
+    
+">
+</div>
+
                 <div class="text">
                     <h2>Features</h2>
                     <h5> <?php echo $name ?></h5>
@@ -152,6 +137,12 @@ if (isset($_POST['submit'])) {
     ?>
         </div>
     </section>
+    <script>
+			var preloader = document.getElementById('loading');
+			function myFunction(){
+				preloader.style.display = 'none';
+			}
+		</script>
 </body>
 
 </html>
