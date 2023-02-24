@@ -6,20 +6,19 @@ document.querySelector('#search-btn').onclick = () => {
 }
 
 let shoppingCart = document.querySelector('.shopping-cart');
-document.querySelector('#cart-btn').onclick = () => {
-    shoppingCart.classList.toggle('active');
-    searchForm.classList.remove('active');
-    loginform.classList.remove('active');
-
-}
+document.getElementById('cart-btn').addEventListener('click',function() {
+    
+        shoppingCart.classList.toggle('active');
+        searchForm.classList.remove('active');
+        loginform.classList.remove('active');
+})
 
 let loginform = document.querySelector('.login-form');
-document.querySelector('#login-btn').onclick = () => {
-
+document.getElementById('login-btn').addEventListener('click',function(){
     searchForm.classList.remove('active');
     shoppingCart.classList.remove('active');
     loginform.classList.toggle('active');
-}
+});
 
 let navbar = document.querySelector('.navbar');
 document.querySelector('#menu-btn').onclick = () => {
@@ -42,17 +41,17 @@ document.querySelector('#menu-btn').onclick = () => {
 </div>
 */
 
-function getCartData() {    
-        $.ajax({
-            url:"get-cart-date.php",    //the page containing php script
-            type: "get",    //request type,
-            dataType: 'json',            
-            success:function(result){
-                console.log(result);
-            }
-        });
+// function getCartData() {    
+//         $.ajax({
+//             url:"get-cart-date.php",    //the page containing php script
+//             type: "get",    //request type,
+//             dataType: 'json',            
+//             success:function(result){
+//                 console.log(result);
+//             }
+//         });
     
     
-}
+// }
 
-getCartData();
+// getCartData();

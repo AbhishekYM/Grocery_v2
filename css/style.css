@@ -245,11 +245,11 @@ section
     border: 0px solid;
     position: absolute;
     top: 100%;
-    left: -100%;
+    right: -100%;
     padding: 1rem;
     border-radius: .5rem;
     box-shadow: var(--box-shadow);
-    width: 30rem;
+    width: 50rem;
     background: #fff;
 }
 

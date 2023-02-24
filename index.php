@@ -386,7 +386,11 @@ if (!isset($_SESSION['user_name'])) {
 							<i class='fa fa-star'></i>
 							<i class='fa fa-star-half'></i>
 							<br>
-							<a href="/Grocery/html/product-details/details.php" class="btn">Add to Cart</a>
+							<form action="/Grocery/app/cart/add.php" method="post">
+								<input type="hidden" name="productId" value="<?php echo $product_id;?>">
+								<input type="hidden" name="quantity" value="1">
+								<button type='submit' name="addCart" class="btn">Add to Cart</a>
+							</form>
 						</div>
 					</div>
 					<?php

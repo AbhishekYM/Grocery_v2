@@ -5,6 +5,7 @@ include('/var/www/html/Grocery/database/connection.php');
 
 <?php
 session_start();
+
 if (!isset($_SESSION['name'])) {
     header('location:/Grocery/html/Admin/login.php');
 }

@@ -30,50 +30,58 @@ session_start();
 	<div class="icons">
 			<div class="fa fa-bars" id="menu-btn"></div>
 			<div class="fa fa-search" id="search-btn"></div>
-			<div class="fa fa-shopping-cart" id="cart-btn"></div>
-			<div class="fa fa-user" id="login-btn"></div>
+			<?php
+			if (!isset($_SESSION['user_id'])) {
+				echo '<div class="fa fa-user" id="login-btn"></div>';
+			} else {
+				echo '<div class="fa fa-shopping-cart" id="cart-btn"></div>';
+				echo '<a href="/Grocery/app/user/logout.php"><div class="fa fa-sign-out" id="logout-btn"></div></a>';
+			}
+			?>
 		</div>
 		<form action="" class="search-form">
 			<input type="search" id="search-box" placeholder="search-here">
 			<label for="search-box" class="fa fa-search"></label>
 		</form>
 		<div class="shopping-cart">
+			<?php
+			$select_cart = "SELECT `cart`.*,cart.id as cart_id,product.id as productId ,`product`.*, `cart`.`product_id`, `cart`.`user_id` FROM `cart` , `product` WHERE `cart`.`product_id` = `product`.`id` AND `cart`.`user_id` = '$_SESSION[user_id]'";
+			$executeSelectCart = mysqli_query($con,$select_cart);
+			while ($carts = mysqli_fetch_assoc($executeSelectCart)) {
+				?>
 			<div class="box">
-				<i class="fa fa-trash"></i>
-				<img src="/Final_Project/image/image/cart-img-1.png" alt="">
+				<a href="/Grocery/app/cart/delete.php?cart_id=<?php echo $carts['cart_id'] ?>" class="fa fa-trash"></a>
+				<img src="/Grocery/storage/image/<?php echo $carts['featured_image']; ?>" alt="s">
 				<div class="content">
-					<h3>Watermelon</h3>
-					<span class="price">100</span>
-					<span class="quantity">Qty: 2</span>
+					<h3><?php echo $carts['title']; ?></h3>
+					<span class="price">price ; <?php echo $carts['price']; ?></span>
+					<span class="quantity">Qty: <?php echo $carts['quantity']; ?></span>
+					<span class="quantity">Total : <?php echo $carts['price']*$carts['quantity']; ?></span>
+					
+					<form action="app/cart/update.php" method="post" id="quantity">
+						<input type="hidden" name="productId" value="<?php echo $carts['productId']; ?>">
+						<input type="text" placeholder="Enter" name="quantity" id="updatedQuantity">
+						<input type="submit" value="Add">
+					</form>
 				</div>
 			</div>
-			<div class="box">
-				<i class="fa fa-trash"></i>
-				<img src="/Final_Project/image/image/cart-img-3.png" alt="">
-				<div class="content">
-					<h3>Chicken</h3>
-					<span class="price">100</span>
-					<span class="quantity">Qty: 2</span>
-				</div>
-			</div>
-			<div class="box">
-				<i class="fa fa-trash"></i>
-				<img src="/Final_Project/image/image/cart-img-2.png" alt="">
-				<div class="content">
-					<h3>Onion</h3>
-					<span class="price">100</span>
-					<span class="quantity">Qty: 2</span>
-				</div>
-			</div>
-			<div class="total"> total : 300/-</div>
+			<!-- <script>
+
+				document.getElementById("selectQuantity").addEventListener('change',function(){
+					document.getElementById("updatedQuantity").value = document.getElementById('selectQuantity').value;
+					document.getElementById('quantity').submit();
+				});
+			</script> -->
+			<?php
+			}
+			$select_price_total = "SELECT SUM(product.price) as total FROM `cart` , `product` WHERE `cart`.`product_id` = `product`.`id` AND `cart`.`user_id` = '$_SESSION[user_id]'";
+			$executeselectPriceTotal = mysqli_query($con,$select_price_total);
+			$fetchTotalPrice = mysqli_fetch_assoc($executeselectPriceTotal);
+			?>
+			<div class="total"> total : <?php echo $fetchTotalPrice['total']; ?> -</div>
 			<a href="#" class="btn" id="cart-btn">Checkout</a>
 		</div>
 		<?php
-		if (!isset($_SESSION['user_id'])) {
-			echo '<div class="fa fa-user" id="login-btn"></div>';
-		} else {
-			echo '<a href="/var/www/html/Grocery/app/Admin/logout.php"><div class="fa fa-sign-out" id="logout-btn"></div></a>';
-		}
 		?>
 	</div>
 	
@@ -94,10 +102,10 @@ session_start();
 				if ($row['type'] == 'user') {
 					$_SESSION['name'];
 					// print_r($row['full_name']);
-					header('location:/Grocery/index.php');
+					header('location: /Grocery/index.php');
 				} elseif ($row['type'] == 'user') {
 					$_SESSION['name'];
-					header('location:/Grocery/index.php');
+					header('location: /Grocery/index.php');
 				}
 			} else {
 				$error = "incorrect email or password";
