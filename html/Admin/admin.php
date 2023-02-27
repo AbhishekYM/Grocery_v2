@@ -31,8 +31,8 @@ if (!isset($_SESSION['name'])) {
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
                     <div class="box-topic"><a href="product.php" class="text" style="
-    text-decoration: auto;color:black;
-">Product</a></div>
+                            text-decoration: auto;color:black;
+                        ">Product</a></div>
                     <div class="number">
                         <?php echo $rowsselectCount['total']; ?>
                     </div>
@@ -50,7 +50,7 @@ if (!isset($_SESSION['name'])) {
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-                    <div class="box-topic"><a href="user.php" class="text-light" style="
+                    <div class="box-topic"><a href="user.php" class="" style="
     text-decoration: auto;color:black;">Customer</a></div>
                     <div class="number"><?php echo $rowsselectCount['total']; ?></div>
                     <div class="indicator">
@@ -112,9 +112,7 @@ if (!isset($_SESSION['name'])) {
                 </div>
                 <i class='bx bxs-cart-download cart four'></i>
             </div>
-            <div class="box" style="
-    margin: 10px; margin-left:-405px;
-">
+            <div class="box" >
                 <div class="right-side">
                     <?php
                     $sql = "SELECT COUNT(id) AS total from review;";
@@ -122,8 +120,8 @@ if (!isset($_SESSION['name'])) {
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
                     <div class="box-topic"><a href="review.php" class="text" style="
-    text-decoration: auto;color:black;
-">Reviews</a></div>
+                        text-decoration: auto;color:black;
+                    ">Reviews</a></div>
                     <div class="number">
                         <?php echo $rowsselectCount['total']; ?>
                     </div>
@@ -142,8 +140,26 @@ if (!isset($_SESSION['name'])) {
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
                     <div class="box-topic"><a href="blog.php" class="text" style="
-    text-decoration: auto; color:black;
-">Blogs</a></div>
+                        text-decoration: auto; color:black;
+                    ">Blogs</a></div>
+                    <div class="number"><?php echo $rowsselectCount['total']; ?></div>
+                    <div class="indicator">
+                        <i class='bx bx-up-arrow-alt'></i>
+                        <span class="text">Up from yesterday</span>
+                    </div>
+                </div>
+                <i class='bx bxs-cart-add cart two'></i>
+            </div>
+            <div class="box">
+                <div class="left-side">
+                    <?php
+                    $sql = "SELECT COUNT(id) AS total from blog;";
+                    $execute = mysqli_query($con, $sql);
+                    $rowsselectCount = mysqli_fetch_array($execute);
+                    ?>
+                    <div class="box-topic"><a href="blog.php" class="text" style="
+                        text-decoration: auto; color:black;
+                    ">Blogs</a></div>
                     <div class="number"><?php echo $rowsselectCount['total']; ?></div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>

@@ -14,7 +14,7 @@
   transition: all 0.5s ease;
 }
 .sidebar.active{
-  width: 60px;
+  width: 0px;
 }
 .sidebar .logo-details{
   height: 80px;
@@ -39,6 +39,7 @@
 .sidebar .nav-links li{
   position: relative;
   list-style: none;
+  border: 1px solid #0A2558 !important;
   height: 50px;
 }
 .sidebar .nav-links li a{
@@ -81,8 +82,8 @@
   transition: all 0.5s ease;
 }
 .sidebar.active ~ .home-section{
-  width: calc(100% - 60px);
-  left: 60px;
+  width: calc(100% - 0px);
+  left: 0;
 }
 .home-section nav{
   display: flex;
@@ -100,8 +101,8 @@
   transition: all 0.5s ease;
 }
 .sidebar.active ~ .home-section nav{
-  left: 60px;
-  width: calc(100% - 60px);
+  left: 0;
+  width: calc(100% - 0px);
 }
 .home-section nav .sidebar-button{
   display: flex;
@@ -112,6 +113,7 @@
 nav .sidebar-button i{
   font-size: 35px;
   margin-right: 10px;
+  cursor: pointer;
 }
 .home-section nav .search-box{
   position: relative;
@@ -192,6 +194,7 @@ nav .profile-details i{
   background: #fff;
   padding: 15px 14px;
   border-radius: 12px;
+  margin-top: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 .overview-boxes .box-topic{
@@ -348,14 +351,14 @@ nav .profile-details i{
 /* Responsive Media Query */
 @media (max-width: 1240px) {
   .sidebar{
-    width: 60px;
+    width: 0px;
   }
   .sidebar.active{
     width: 220px;
   }
   .home-section{
-    width: calc(100% - 60px);
-    left: 60px;
+    width: calc(100% - 0px);
+    left: 0;
   }
   .sidebar.active ~ .home-section{
     /* width: calc(100% - 220px); */
@@ -363,8 +366,8 @@ nav .profile-details i{
     left: 220px;
   }
   .home-section nav{
-    width: calc(100% - 60px);
-    left: 60px;
+    width: calc(100% - 0px);
+    left: 0;
   }
   .sidebar.active ~ .home-section nav{
     width: calc(100% - 220px);

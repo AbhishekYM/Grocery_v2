@@ -10,7 +10,7 @@ if ($result) {
                 <?php echo $row['id'] ?>
             </td>
             <td>
-            <td><img src='/Grocery/storage/image//<?php echo $row['photo'];?>' </td style="width:96px">
+            <td><img src='/Grocery/storage/image//<?php echo $row['photo']; ?>' </td style="width:96px">
             </td>
             <td>
                 <?php echo $row['description'] ?>
@@ -43,7 +43,7 @@ if ($result) {
                             href="/Grocery/app/review/decline.php?deleteid=<?php echo $row['id'] ?>">Decline<img
                                 src="/Grocery/storage/image/icons8-multiply-24.png" alt="" style="padding-left: 5px;"></a></button>
                     <?php
-                    
+
                 }
                 ?>
             </td>
@@ -62,4 +62,3 @@ if ($result) {
         text-decoration: underline;
     }
 </style>
-

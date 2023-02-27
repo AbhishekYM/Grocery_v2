@@ -23,6 +23,8 @@ if (!isset($_SESSION['user_name'])) {
 			height: 90vh;
 			position: relative;
 			overflow: hidden;
+			border-radius: 15px !important;
+			/* margin: 0px 10px !important; */
 		}
 
 		.slider {
@@ -85,12 +87,12 @@ if (!isset($_SESSION['user_name'])) {
 			font-weight: bold;
 			border: 2px solid green;
 			background: green;
-			color: green;
+			color: #fff !important;
 			cursor: pointer;
 		}
 
 		.shop:hover {
-			background: ;
+			/* background: ; */
 			border: 2px solid green;
 		}
 
@@ -256,7 +258,7 @@ if (!isset($_SESSION['user_name'])) {
 
 	<!--Banner-->
 	<div class="title">
-		<h1 class="heading" style="font-size: 20px; margin-top: -45px;"> Welcome <span>
+		<h1 class="heading" style="font-size: 25px; margin-top: -45px;"> Welcome <span>
 				<?php
 				if (!isset($_SESSION['name'])) {
 					echo "User";
@@ -266,23 +268,30 @@ if (!isset($_SESSION['user_name'])) {
 				}
 				?>
 			</span> </h1>
-		<div class="banner">
-			<div class="slider">
-				<img src="/Grocery/storage/image/pexels-carlo-martin-alcordo-2449665 (1).jpg" id="slideImg" alt=""
-					srcset="" style="border-radius:72px;">
-			</div>
-			<div class="overlay" style="border-radius:7px">
-				<div class="content1">
-					<h1>Fresh And <span class="span"> Organic </span>Products For You</h1>
-					<br><br>
-					<p style="font-size:14px;">An online grocer is either a brick-and-mortar supermarket or grocery
-						store that allows online ordering,or a standalone e-commerce service that includes grocery
-						items. There is usually a delivery charge for this service.</p>
-					<br><br><br><br><br><br><br><br><br><br><br>
-					<div>
-						<button type="button" class="shop"> <a href="/Grocery/html/product-details/details.php">Shop
-								Now</a>
-						</button>
+		<div class="row">
+			<div class="col-md-12" style="margin: 0px 5px;">
+				<div class="banner">
+					<div class="slider">
+						<img src="/Grocery/storage/image/pexels-carlo-martin-alcordo-2449665 (1).jpg" id="slideImg"
+							alt="" srcset="">
+					</div>
+					<div class="overlay" style="">
+						<div class="content1">
+							<h1>Fresh And <span class="span"> Organic </span>Products For You</h1>
+							<br><br>
+							<p style="font-size:14px;">An online grocer is either a brick-and-mortar supermarket or
+								grocery
+								store that allows online ordering,or a standalone e-commerce service that includes
+								grocery
+								items. There is usually a delivery charge for this service.</p>
+							<div style="margin-top: 40px;">
+								<button type="button" class="shop">
+									<a href="/Grocery/html/product-details/details.php" style="color:#fff">
+										Shop Now
+									</a>
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -313,31 +322,35 @@ if (!isset($_SESSION['user_name'])) {
 	<!--Feature Section-->
 	<section class="features" id="features">
 		<h1 class="heading"> our <span>features</span> </h1>
-		<div class="card-body">
-			<div class="box-container">
-				<?php
-				$select_query = "select * from feature";
-				$result_query = mysqli_query($con, $select_query);
-				while ($row = mysqli_fetch_assoc($result_query)) {
-					$id = $row['id'];
-					$name = $row['name'];
-					$description = $row['description'];
-					$image = $row['image'];
-					?>
-					<div class='box' style=" border-radius: 50px;">
-						<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" alt='' srcset=''>
-						<h3>
-							<?php echo $name ?>
-						</h3>
-						<p>
-							<?php echo $description ?>
-						</p>
-						<a href='/Grocery/html/Read More/feature.php?feature=<?php echo $id; ?>' class='btn'
-							name="submit">read more</a>
+		<div class="row">
+			<div class="col-md-12 main-div-card">
+				<div class="card-body">
+					<div class="box-container">
+						<?php
+						$select_query = "select * from feature";
+						$result_query = mysqli_query($con, $select_query);
+						while ($row = mysqli_fetch_assoc($result_query)) {
+							$id = $row['id'];
+							$name = $row['name'];
+							$description = $row['description'];
+							$image = $row['image'];
+							?>
+							<div class='box' style=" border-radius: 50px;">
+								<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" alt='' srcset=''>
+								<h3>
+									<?php echo $name ?>
+								</h3>
+								<p>
+									<?php echo $description ?>
+								</p>
+								<a href='/Grocery/html/Read More/feature.php?feature=<?php echo $id; ?>' class='btn'
+									name="submit">read more</a>
+							</div>
+							<?php
+						}
+						?>
 					</div>
-					<?php
-				}
-				?>
+				</div>
 			</div>
 		</div>
 		</div>
@@ -346,7 +359,8 @@ if (!isset($_SESSION['user_name'])) {
 	<!--Products Section-->
 	<section class="products" id="products">
 		<h1 class="heading"> our <span>products</span> </h1>
-		<a href='/Grocery/html/product-details/details.php' class='btn' style="display:flex; float: right;">show
+		<a href='/Grocery/html/product-details/details.php' class='btn'
+			style="display:flex;float: right;margin-right: 25px;">show
 			more</a>
 		<!-- <div class="swiper product-slider"> -->
 		<div class="swiper product-slider" style="width: 100%; ">
@@ -358,7 +372,7 @@ if (!isset($_SESSION['user_name'])) {
 					$product_id = $row['id'];
 					$code = $row['code'];
 					$product_category = $row['category'];
-					
+
 					$product_title = $row['title'];
 					$product_price = $row['price'];
 					$description = $row['description'];
@@ -387,9 +401,22 @@ if (!isset($_SESSION['user_name'])) {
 							<i class='fa fa-star-half'></i>
 							<br>
 							<form action="/Grocery/app/cart/add.php" method="post">
-								<input type="hidden" name="productId" value="<?php echo $product_id;?>">
+								<input type="hidden" name="productId" value="<?php echo $product_id; ?>">
 								<input type="hidden" name="quantity" value="1">
-								<button type='submit' name="addCart" class="btn">Add to Cart</a>
+
+								<?php
+								$cartArrary = array($product_id);
+								array_push($cartArrary, $product_id);
+								$cartArrary = [$product_id];
+									print_r($cartArrary);
+								if (!in_array($cartArrary, $product_id)) { ?>
+									<button type='submit' name="addCart" class="btn">Add to Cart</a>
+									<?php																						
+								} else {?>
+									<button type='submit' name="addCart" class="btn">Go to Cart</a
+								<?php
+								}
+								?>
 							</form>
 						</div>
 					</div>
@@ -472,7 +499,7 @@ if (!isset($_SESSION['user_name'])) {
 	<section class="blogs" id="blogs">
 		<h1 class="heading">Our <span>blogs</span> </h1>
 		<div class="box-container">
-		<?php
+			<?php
 			$select_query = "select * from blog ";
 			$result_query = mysqli_query($con, $select_query);
 			while ($row = mysqli_fetch_assoc($result_query)) {
@@ -481,23 +508,29 @@ if (!isset($_SESSION['user_name'])) {
 				$date = $row['date'];
 				$description = $row['description'];
 				?>
-			<div class="box" style=" border-radius: 50px;">
-				<img src="/Grocery/storage/image<?php echo $row['image']?>"  alt="" srcset="">
-				<div class="content">
-					<div class="icons">
-						<a href="#"><i class="fa fa-user"></i>By User</a>
-						<a href="#"><i class="fa fa-calender"></i><?php echo $row['date']?></a>
+				<div class="box" style=" border-radius: 50px;">
+					<img src="/Grocery/storage/image<?php echo $row['image'] ?>" alt="" srcset="">
+					<div class="content">
+						<div class="icons">
+							<a href="#"><i class="fa fa-user"></i>By User</a>
+							<a href="#"><i class="fa fa-calender"></i>
+								<?php echo $row['date'] ?>
+							</a>
+						</div>
+						<h3>
+							<?php echo $row['title'] ?>
+						</h3>
+						<p>
+							<?php echo $row['description'] ?>
+						</p>
+						<a href="" class="btn">Read More</a>
 					</div>
-					<h3><?php echo $row['title']?></h3>
-					<p><?php echo $row['description']?></p>
-					<a href="" class="btn">Read More</a>
 				</div>
-			</div>
 				<?php
 			}
 			?>
-			</div>
-		
+		</div>
+
 	</section>
 	<!--Blog Section-->
 
@@ -511,72 +544,78 @@ if (!isset($_SESSION['user_name'])) {
 
 
 	<!--Footer Section-->
+	<form action="" method="post" enctype="multipart/form-data" style="
+	margin-bottom: 25px !important;
+">
 
-	<form action="" method="post" enctype="multipart/form-data">
-		
 		<h1 class="heading">More<span>Info</span> </h1>
-		<section class="footer" style="margin: -20px;">
+		<div class="row">
+			<div class="col-md-12 " style="">
+				<section class="footer" style="margin: -20px;margin:2px 10px !important;">
 
-			<div class="box-container">
-				<div class="box">
-					<h3>GROCO <i class="fa fa-shopping-basket "></i> </h3>
-					<p>Welcome to our Website. We Provide Fresh and Hygenic Products</p>
-					<div class="share">
-						<a href="" class="fa fa-facebook"></a>
-						<a href="" class="fa fa-instagram"></a>
-						<a href="" class="fa fa-linkedin"></a>
+					<div class="box-container">
+						<div class="box">
+							<h3>GROCO <i class="fa fa-shopping-basket "></i> </h3>
+							<p>Welcome to our Website. We Provide Fresh and Hygenic Products</p>
+							<div class="share">
+								<a href="" class="fa fa-facebook"></a>
+								<a href="" class="fa fa-instagram"></a>
+								<a href="" class="fa fa-linkedin"></a>
+							</div>
+						</div>
+						<div class="box">
+							<h3>Contact Info</h3>
+							<a href="#" class="links"> <i class="fa fa-phone"></i>+91 8160646216 </a>
+							<a href="#" class="links"> <i class="fa fa-phone"></i>+91 8160646216 </a>
+							<a href="#" class="links"> <i class="fa fa-phone"></i>+91 8160646216 </a>
+							<a href="#" class="links"> <i class="fa fa-envelope"></i>info@groco.com </a>
+							<a href="#" class="links"> <i class="fa fa-marker"></i>Pune, India </a>
+						</div>
+
+						<div class="box">
+							<h3>Quick Links</h3>
+							<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Home</a>
+							<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Feature</a>
+							<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Products</a>
+							<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Categories</a>
+							<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Review</a>
+							<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Blogs</a>
+						</div>
+
+						<div class="box">
+							<h3>Reviews</h3>
+							<p>Provide us rerview</p>
+							<input type="file" placeholder="Your review" class="email" name="photo" id="formFile">
+							<!--Name-->
+							<div class="mb-3">
+								<label for="exampleFormControlInput1" class="form-label">Enter Name</label>
+								<input type="text" name="name" class="form-control" id="exampleFormControlInput1"
+									placeholder="name@example.com">
+							</div>
+							<!--Name-->
+							<!--Description-->
+							<!-- <div class="form-floating">
+								<textarea class="form-control" name="description" placeholder="Leave a review here"
+								id="floatingTextarea"></textarea>
+							</div> -->
+
+
+							<div class="mb-3">
+								<!-- <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label> -->
+								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+									name="description" placeholder="Leave a review here"></textarea>
+							</div>
+							<br>
+							<!--Description-->
+							<!-- <input type="button" value="Subscribe" class="btn" name="insert_review"> -->
+							<button type="submit" name="insert_review" class="btn">Submit Now</button>
+						</div>
 					</div>
-				</div>
-				<div class="box">
-					<h3>Contact Info</h3>
-					<a href="#" class="links"> <i class="fa fa-phone"></i>+91 8160646216 </a>
-					<a href="#" class="links"> <i class="fa fa-phone"></i>+91 8160646216 </a>
-					<a href="#" class="links"> <i class="fa fa-phone"></i>+91 8160646216 </a>
-					<a href="#" class="links"> <i class="fa fa-envelope"></i>info@groco.com </a>
-					<a href="#" class="links"> <i class="fa fa-marker"></i>Pune, India </a>
-				</div>
-
-				<div class="box">
-					<h3>Quick Links</h3>
-					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Home</a>
-					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Feature</a>
-					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Products</a>
-					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Categories</a>
-					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Review</a>
-					<a href="#" class="links"> <i class="fa fa-arrow-right"></i>Blogs</a>
-				</div>
-
-				<div class="box">
-					<h3>Reviews</h3>
-					<p>Provide us rerview</p>
-					<input type="file" placeholder="Your review" class="email" name="photo" id="formFile">
-					<!--Name-->
-					<div class="mb-3">
-						<label for="exampleFormControlInput1" class="form-label">Enter Name</label>
-						<input type="text" name="name" class="form-control" id="exampleFormControlInput1"
-							placeholder="name@example.com">
-					</div>
-					<!--Name-->
-					<!--Description-->
-					<!-- <div class="form-floating">
-						<textarea class="form-control" name="description" placeholder="Leave a review here"
-						id="floatingTextarea"></textarea>
-					</div> -->
-
-
-					<div class="mb-3">
-						<!-- <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label> -->
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"
-							placeholder="Leave a review here"></textarea>
-					</div>
-					<br>
-					<!--Description-->
-					<!-- <input type="button" value="Subscribe" class="btn" name="insert_review"> -->
-					<button type="submit" name="insert_review" class="btn">Submit Now</button>
-				</div>
+				</section>
 			</div>
-		</section>
+		</div>
 	</form>
+
 	<!--Footer Section-->
 	<script src="js/slider.js"></script>
 	<script>

@@ -7,7 +7,7 @@ if(isset($_GET['cart_id']))
     $result = mysqli_query($con, $sql);
     if($result)
     {
-     header('location: /Grocery/');
+     header('location: /Grocery/html/add to cart/addtocart.php');
     }
     else
     {

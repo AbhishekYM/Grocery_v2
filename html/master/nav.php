@@ -1,9 +1,10 @@
 <?php
 include('/var/www/html/Grocery/database/connection.php');
 session_start();
-
+error_reporting(0);
 ?>
-
+<!-- Bootstrap start-->
+<!-- Bootstrap end -->
 <!--Code for font awesone cdn-->
 <link rel="stylesheet" href="/Grocery/fontawesome-free-6.3.0-web/css/all.min.css">
 <!--Code for font awesone cdn-->

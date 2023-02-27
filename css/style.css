@@ -23,12 +23,12 @@
 }
 
 .footer{
-    margin-top: 150px;
+    /* margin-top: 150px;
     width: 100%;
     padding: 100px ;
     background: #eee;
     color: var(--light-color);
-    display: flex;
+    display: flex; */
 }
 /* .footer div{
     text-align: center;
@@ -52,11 +52,16 @@ form input{
     width: 400px;
     height: 45px;
     border-radius: 4px;
-    text-align: center;
+    /* text-align: center; */
     margin-top: 20px;
     margin-bottom: 40px;
     outline: none;
-    border: none;
+    /* border: 1px solid green; */
+    padding: 10px;
+}
+
+form input:hover{
+    cursor: pointer;
 }
 
 *
@@ -86,7 +91,7 @@ body
 /*css code for banner*/
 section
 {
-    padding: 2rem 9%;
+    padding: 2rem;
 }
 
 .heading
@@ -108,13 +113,13 @@ section
 }
 .btn
 {
-    border: .2rem solid var(--black);
+    border: .2rem solid var(--green);
     margin-top: 1rem;
     display: inline-block;
     padding: .8rem 3rem;
     font-size: 1.7rem;
     border-radius:.5rem;
-    color: var(--black);
+    color: var(--green);
     cursor: pointer;
     background: none;
 }
@@ -432,6 +437,7 @@ form.login-form.active
     outline-offset: -1rem;
     text-align: center;
     box-shadow: var(--box-shadow);
+    cursor: pointer;
 }
 .features .box-container .box:hover
 {
