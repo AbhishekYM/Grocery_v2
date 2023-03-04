@@ -1,6 +1,8 @@
 <?php
 if (!isset($_SESSION['user_name'])) {
 }
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -132,6 +134,12 @@ if (!isset($_SESSION['user_name'])) {
 <body onload="myFunction()">
 	<?php
 	include "html/master/nav.php";
+	$cartDetail = "SELECT * from cart ";
+	$productId = [];
+	$result = mysqli_query($con, $cartDetail);
+	while ($row = mysqli_fetch_assoc($result)) {
+		$productId[$row['product_id']] = $row['product_id'];
+	}
 	?>
 
 	<br><br><br><br>
@@ -142,19 +150,12 @@ if (!isset($_SESSION['user_name'])) {
 		<!-- <input type="search" id="search-box" placeholder="search" name="searchTerm"> -->
 		<!-- <label for="search-box" class="fa fa-search"></label> -->
 		<!-- <input type="submit" value="search" name="submit"> -->
-		<input aria-label="productSearch" autocomplete="off" type="text" id="productSearch" name="searchTerm"
-			placeholder="Search for Products..." class="searchType" value="" style="
-	width: 388px;
-	margin-left: 74px;
-">
+		<input aria-label="productSearch" autocomplete="off" type="text" id="productSearch" name="searchTerm"placeholder="Search for Products..." class="searchType" value="" style="width: 388px;margin-left: 74px;">
 		<button type="submit" name="submit" class="searchButton"><svg viewBox="0 0 20 20" height="15px">
-				<path
-					d="M19.755 18.58l-4.808-4.808a8.423 8.423 0 1 0-1.18 1.179l4.808 4.804a.833.833 0 1 0 1.18-1.175zm-11.326-3.4a6.753 6.753 0 1 1 6.755-6.752 6.76 6.76 0 0 1-6.755 6.752zm0 0"
-					fill="#fff" data-name="Layer 18"></path>
+				<path d="M19.755 18.58l-4.808-4.808a8.423 8.423 0 1 0-1.18 1.179l4.808 4.804a.833.833 0 1 0 1.18-1.175zm-11.326-3.4a6.753 6.753 0 1 1 6.755-6.752 6.76 6.76 0 0 1-6.755 6.752zm0 0" fill="#fff" data-name="Layer 18"></path>
 			</svg></button>
 		<!-- <button type="submit"  name="submit" class="btn btn-primary">Submit</button> -->
 	</form>
-
 	<?php
 	if (isset($_POST['submit'])) {
 		$searchTerm = $_POST['searchTerm'];
@@ -162,7 +163,6 @@ if (!isset($_SESSION['user_name'])) {
 		// $category = "SELECT * FROM category WHERE title LIKE '%$searchTerm%'";
 		// $sql = "SELECT * FROM product Join table category ON product.id = category.id where product_title LIKE '%$searchTerm%' OR category.title LIKE '%$searchTerm%'";
 		$sql = "SELECT * from product as t1 JOIN category as t2 ON t1.id = t2.product_id where t1.title LIKE '%$searchTerm%'OR t2.title LIKE '%$searchTerm%' ORDER BY t1.title DESC";
-
 		$result = mysqli_query($con, $sql);
 		if (mysqli_num_rows($result) > 0) {
 			while ($row = mysqli_fetch_assoc($result)) {
@@ -258,16 +258,7 @@ if (!isset($_SESSION['user_name'])) {
 
 	<!--Banner-->
 	<div class="title">
-		<h1 class="heading" style="font-size: 25px; margin-top: -45px;"> Welcome <span>
-				<?php
-				if (!isset($_SESSION['name'])) {
-					echo "User";
-				}
-				if (isset($_SESSION['name'])) {
-					echo $_SESSION['name'];
-				}
-				?>
-			</span> </h1>
+	
 		<div class="row">
 			<div class="col-md-12" style="margin: 0px 5px;">
 				<div class="banner">
@@ -400,21 +391,24 @@ if (!isset($_SESSION['user_name'])) {
 							<i class='fa fa-star'></i>
 							<i class='fa fa-star-half'></i>
 							<br>
-							<form action="/Grocery/app/cart/add.php" method="post">
+							<form action="/Grocery/app/cart/add.php" method="POST">
 								<input type="hidden" name="productId" value="<?php echo $product_id; ?>">
 								<input type="hidden" name="quantity" value="1">
-
 								<?php
-								$cartArrary = array($product_id);
-								array_push($cartArrary, $product_id);
-								$cartArrary = [$product_id];
-									print_r($cartArrary);
-								if (!in_array($cartArrary, $product_id)) { ?>
+								$cartArrary = [$productId];
+								// $_SESSION['product'] = $_POST['productId'];
+								// $_SESSION['addedCartArray'] = [];
+								// array_push($_SESSION['addedCartArray'], $productId);
+								array_push($cartArrary, $productId);
+								$cartArrary = [$productId];
+								//  print_r($productId);
+								print_r($cartArrary);
+								// print_r($_SESSION['addedCartArray']);
+								if (!(in_array($cartArrary, $productId))) { ?>
 									<button type='submit' name="addCart" class="btn">Add to Cart</a>
-									<?php																						
-								} else {?>
-									<button type='submit' name="addCart" class="btn">Go to Cart</a
-								<?php
+										<?php
+								} else { ?>
+										<button type='submit' name="addCart" class="btn">Go to Cart</a <?php
 								}
 								?>
 							</form>

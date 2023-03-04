@@ -10,6 +10,7 @@ error_reporting(0);
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/var/www/html/Grocery/bootstrap/bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <!-- Bootstrap CSS -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
@@ -131,10 +132,17 @@ error_reporting(0);
         .fa-heart:hover {
             color: red;
         }
+
+        .item-settle {
+
+            height: 40px;
+            margin-top: 0;
+            width: 114px;
+        }
     </style>
 
     <link rel="stylesheet" href="/Grocery/bootstrap/bootstrap-5.0.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
     <title>Shopping Cart</title>
 </head>
 <br><br><br><br><br>
@@ -144,14 +152,11 @@ error_reporting(0);
     <div class="container-fluid">
         <div class="row">
             <div class="title">
-
                 <div class="col-md-10 col-11 mx-auto">
                     <div class="row mt-5 gx-3">
-
-                        <!-- left side div -->
                         <div class="col-md-12 col-lg-8 acol-11 mx-auto main_cart mb-lg-0 mb-5 shadow">
                             <div class="card p-4" style="padding: 6rem !important;">
-                                <h1 class="heading" style="font-size: 25px; margin-top: -45px;"> Hello
+                                <h1 class="heading" style="font-size: 25px; margin-top: -45px; color:green; font-weight:bold;"> Hello
                                     <?php
                                     if (!isset($_SESSION['name'])) {
                                         echo "User";
@@ -160,26 +165,28 @@ error_reporting(0);
                                         echo $_SESSION['name'];
                                     }
                                     ?>
+                                    <hr>
                                     <?php
                                     $sql = "SELECT COUNT(id) AS total from cart;";
                                     $execute = mysqli_query($con, $sql);
                                     $rowsselectCount = mysqli_fetch_array($execute);
                                     ?>
-                                    <h2 class="py-4 font-weight-bold">Cart (
+                                    <h2 class="py-4 font-weight-bold" style="color:green; margin-top:-43px;">Total items
+                                        (
                                         <?php echo $rowsselectCount['total']; ?>
                                         items)
                                     </h2>
+                                    <hr>
                                     <!-- cart product details -->
                                     <div class="col-md-7 col-11 mx-auto px-4 mt-2">
                                         <div class="shopping-cart">
-                                            <div class="row">
+                                            <div class="row" style="margin-left: -231px;">
                                                 <?php
                                                 $select_cart = "SELECT `cart`.*,cart.id as cart_id,product.id as productId ,`product`.*, `cart`.`product_id`, `cart`.`user_id` FROM `cart` , `product` WHERE `cart`.`product_id` = `product`.`id` AND `cart`.`user_id` = '$_SESSION[user_id]'";
                                                 $executeSelectCart = mysqli_query($con, $select_cart);
                                                 while ($carts = mysqli_fetch_assoc($executeSelectCart)) {
                                                     ?>
                                                     <div class="row">
-
                                                         <!-- cart images div -->
                                                         <div
                                                             class="col-md-5 col-11 mx-auto bg-light d-flex justify-content-center align-items-center shadow product_img">
@@ -189,49 +196,70 @@ error_reporting(0);
                                                         </div>
                                                         <!-- product name  -->
                                                         <div class="col-6 card-title">
-                                                            <h1 class="mb-4 product_name">
+                                                            <h1 class="mb-4 product_name" style="font-size: 3rem;">
                                                                 <?php echo $carts['title']; ?>
                                                             </h1>
                                                             <!-- <p class="mb-2">SHIRT - BLUE</p> -->
-                                                            <p class="mb-2" style="font-size:1.5rem;">QTY:
+                                                            <p class="mb-2" style="font-size:1.5rem;color: black;">QTY:
                                                                 <?php echo $carts['quantity']; ?>
                                                             </p>
-                                                            <p class="mb-3" style="font-size:1.5rem;">Price :
+                                                            <p class="mb-3" style="font-size:1.5rem;color: black;">Price :
                                                                 <?php echo $carts['price']; ?>/kg
                                                             </p>
-
-
-                                                            <span class="quantity" style="font-size:2rem;">Total :
+                                                            <span class="quantity" style="font-size:2rem;">₹
                                                                 <span>
                                                                     <?php echo $carts['price'] * $carts['quantity']; ?>
                                                                 </span></span>
                                                             &nbsp;
                                                             <a href="/Grocery/app/cart/delete.php?cart_id=<?php echo $carts['cart_id'] ?>"
-                                                                class="fa fa-trash"></a>
+                                                                style="color:red;text-decoration: auto;font-size: 1.3rem;">Remove</a>
                                                         </div>
                                                         <form action="/Grocery/app/cart/update.php" method="post"
                                                             id="quantity">
                                                             <input type="hidden" name="productId"
                                                                 value="<?php echo $carts['productId']; ?>">
-                                                            <input type="text" placeholder="Enter Quantity to purchase"
-                                                                name="quantity" id="updatedQuantity" maxlenght="5">
-                                                            <input type="submit" value="Add">
+                                                            <!-- <input type="text" placeholder="Maximum 5 items" name="quantity"
+                                                                                                        id="updatedQuantity" min="1" max="10"
+                                                                                                        style=" border: 1px solid;width: 21rem;margin-left: 2rem;"
+                                                                                                        max="5" min="0"> -->
+                                                            <div class="d-flex justify-content" style="margin-left:346px">
+                                                                <select class="form-select item-settle me-4"
+                                                                    style="width:114px; font-size:1.5rem;"
+                                                                    aria-label="Default select example" name="quantity">
+                                                                    <option>Select Quantity</option>
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                    <option value="4">4</option>
+                                                                    <option value="5">5</option>
+                                                                </select>
+                                                                <input type="submit" class="item-settle" value="Add"
+                                                                    style="color: green;background: white;font-size: 1.5rem;font-weight: bolder;border: 1px solid;">
+                                                            </div>
                                                         </form>
                                                         <hr />
                                                     <?php
                                                 }
-                                                $select_price_total = "SELECT SUM(product.price) as total FROM `cart` , `product` WHERE `cart`.`product_id` = `product`.`id` AND `cart`.`user_id` = '$_SESSION[user_id]'";
+                                                $select_price_total = "SELECT SUM(product.price * cart.quantity) total
+                                                FROM cart
+                                                INNER JOIN product ON cart.product_id = product.Id
+                                                WHERE user_id = $_SESSION[user_id];";
                                                 $executeselectPriceTotal = mysqli_query($con, $select_price_total);
                                                 $fetchTotalPrice = mysqli_fetch_assoc($executeselectPriceTotal);
                                                 ?>
-                                                    <div class="total" style="margin-left:24rem; font-size:2rem;"> total
-                                                        :
-                                                        <?php echo $fetchTotalPrice['total']; ?> -
+                                                    <div class="total"
+                                                        style="margin-left:60rem; font-size:2rem; font-weight:bold;">
+                                                        total
+                                                        : ₹
+                                                        <?php echo $fetchTotalPrice['total']; ?>/-
                                                     </div>
-                                                    <a href="#" class="btn" id="cart-btn">Checkout</a>
+                                                    <a href="/Grocery/html/payment/select.php" class="btn"
+                                                        id="cart-btn"
+                                                        style="padding: 1rem;border: 1px solid;width: 119px;margin-left: 30rem;">Checkout</a>
                                                 </div>
                                                 <?php
                                                 ?>
+                                                <script></script>
 </body>
 
 </html>

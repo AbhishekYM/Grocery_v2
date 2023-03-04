@@ -20,7 +20,9 @@ error_reporting(0);
 <!--Header Section-->
 <header class="header" style="padding:10px;">
 	<a href="/Grocery/#" class="logo"><i class="fa fa-shopping-basket" aria-hidden="true"></i>GROCO</a>
-	<nav class="navbar">
+	<nav class="navbar" style="
+    margin-left: 372px;
+">
 		<a href="/Grocery/#home">Home</a>
 		<a href="/Grocery/#features">Feature</a>
 		<a href="/Grocery/#products">Products</a>
@@ -28,6 +30,34 @@ error_reporting(0);
 		<a href="/Grocery/#review">Reviews</a>
 		<a href="/Grocery/#blogs">Blogs</a>
 	</nav>
+	<?php
+	$sql = "select * from user";
+$result = mysqli_query($con, $sql);
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+         ?>
+	<a  class="text-light" href="/Grocery/html/profile/profile.php?updateid=<?php echo $row['id'] ?>"style="color:blue; margin:8px;">
+	<?php
+    }
+}
+?>
+	<h6 class="heading" style="
+    font-size: 1.5rem;
+    margin-left: -205px;
+    margin-top: -27px;
+    margin-bottom: -31px;
+	cursor:pointer;
+"> 
+				<?php
+				if (!isset($_SESSION['name'])) {
+					echo "User";
+				}
+				if (isset($_SESSION['name'])) {
+					echo $_SESSION['name'];
+				}
+				?>
+			 </h6></a>
+
 	<div class="icons">
 			<div class="fa fa-bars" id="menu-btn"></div>
 			<div class="fa fa-search" id="search-btn"></div>
