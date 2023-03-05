@@ -48,5 +48,11 @@ function verifyOTP() {
 }
 // Generate and send OTP to mobile
 var otp = generateOTP();
-sendOTP('8160646216'); // Replace with actual mobile number
+
+sendOTP('8160646216');
 console.log('OTP sent: ' + otp);
+
+// session
+sessionStorage.setItem('otp',  otp);
+var myVariable = sessionStorage.getItem('otp');
+console.log(otp);

@@ -14,11 +14,15 @@ document.getElementById('cart-btn').addEventListener('click',function() {
 })
 
 let loginform = document.querySelector('.login-form');
-document.getElementById('login-btn').addEventListener('click',function(){
-    searchForm.classList.remove('active');
-    shoppingCart.classList.remove('active');
-    loginform.classList.toggle('active');
-});
+let loginEl = document.getElementById('login-btn');
+if(loginEl){
+    document.getElementById('login-btn').addEventListener('click',function(){
+        searchForm.classList.remove('active');
+        shoppingCart.classList.remove('active');
+        loginform.classList.toggle('active');
+    });
+} 
+
 
 let navbar = document.querySelector('.navbar');
 document.querySelector('#menu-btn').onclick = () => {

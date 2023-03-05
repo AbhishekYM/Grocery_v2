@@ -65,7 +65,7 @@ if ($result) {
 			if (!isset($_SESSION['user_id'])) {
 				echo '<div class="fa fa-user" id="login-btn"></div>';
 			} else {
-				echo '<div class="fa fa-shopping-cart" id="cart-btn"></div>';
+				echo '<a href="/Grocery/html/add to cart/addtocart.php"><div class="fa fa-shopping-cart" id="cart-btn"></div>';
 				echo '<a href="/Grocery/app/user/logout.php"><div class="fa fa-sign-out" id="logout-btn"></div></a>';
 			}
 			?>
@@ -88,32 +88,32 @@ if ($result) {
 					<span class="price">price ; <?php echo $carts['price']; ?></span>
 					<span class="quantity">Qty: <?php echo $carts['quantity']; ?></span>
 					<span class="quantity">Total : <?php echo $carts['price']*$carts['quantity']; ?></span>
-					
-					<form action="app/cart/update.php" method="post" id="quantity">
+					 
+					 <form action="app/cart/update.php" method="post" id="quantity">
 						<input type="hidden" name="productId" value="<?php echo $carts['productId']; ?>">
 						<input type="text" placeholder="Enter" name="quantity" id="updatedQuantity">
-						<input type="submit" value="Add">
+						<input type="submit" value="Add"> 
 					</form>
 				</div>
 			</div>
-			<!-- <script>
+			<script>
 
 				document.getElementById("selectQuantity").addEventListener('change',function(){
 					document.getElementById("updatedQuantity").value = document.getElementById('selectQuantity').value;
 					document.getElementById('quantity').submit();
 				});
-			</script> -->
-			<?php
+			</script>
+			<!-- <?php
 			}
-			$select_price_total = "SELECT SUM(product.price) as total FROM `cart` , `product` WHERE `cart`.`product_id` = `product`.`id` AND `cart`.`user_id` = '$_SESSION[user_id]'";
-			$executeselectPriceTotal = mysqli_query($con,$select_price_total);
-			$fetchTotalPrice = mysqli_fetch_assoc($executeselectPriceTotal);
+			// $select_price_total = "SELECT SUM(product.price) as total FROM `cart` , `product` WHERE `cart`.`product_id` = `product`.`id` AND `cart`.`user_id` = '$_SESSION[user_id]'";
+			// $executeselectPriceTotal = mysqli_query($con,$select_price_total);
+			// $fetchTotalPrice = mysqli_fetch_assoc($executeselectPriceTotal);
 			?>
 			<div class="total"> total : <?php echo $fetchTotalPrice['total']; ?> -</div>
 			<a href="#" class="btn" id="cart-btn">Checkout</a>
 		</div>
 		<?php
-		?>
+		?> -->
 	</div>
 	
 		
