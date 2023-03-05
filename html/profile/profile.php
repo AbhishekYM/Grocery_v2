@@ -1,6 +1,6 @@
 <?php 
 // include("/var/www/html/Grocery/html/master/nav.php");
-incliude("/var/www/html/Grocery/database/connection.php");
+include("/var/www/html/Grocery/database/connection.php");
 $id = $_GET['updateid'];
 $sql = "Select * from user where id='$id'";
 $result = mysqli_query($con, $sql);

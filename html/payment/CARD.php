@@ -71,7 +71,7 @@ include("/var/www/html/Grocery/html/master/nav.php");
 
       <!-- Card Form -->
 
-      <form class="card-form">
+      <form class="card-form" method="POST">
         <div class="field">
           <svg version="1.1" class="card-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
             <g transform="translate(1 1)">
@@ -270,18 +270,55 @@ include("/var/www/html/Grocery/html/master/nav.php");
               <path style="fill:#c9c9d9;" d="M408.6,400.067c-33.28,0-59.733-26.453-59.733-59.733S375.32,280.6,408.6,280.6
 		            s59.733,26.453,59.733,59.733S441.88,400.067,408.6,400.067z M408.6,297.667c-23.893,0-42.667,18.773-42.667,42.667
 		            c0,23.893,18.773,42.667,42.667,42.667c23.893,0,42.667-18.773,42.667-42.667C451.267,316.44,432.493,297.667,408.6,297.667z" />
+              
             </g>
           </svg>
           <input id="card-cvc" class="field__input field__input--cardcvc" type="tel" name="cardcvc" placeholder="123" maxlength="3" autocomplete="off" />
         </div>
-        <button class="button" type="submit">Submit</button>
+        <input type="number" name="GetNumberFrom">
+        <button class="button" type="submit" name="submit">Submit</button>
       </form>
     </div>
   </section>
  <script src="/Grocery/html/payment/script.js"></script>
-
+ <script src="otp.js"></script>  
 </body>
 
 </html>
 </body>
 </html>
+
+
+
+
+
+<?php
+if (isset($_POST['submit'])) {
+  $otp = rand(1000000,100);
+  $otpMessage = "This is your OTP: ".$otp;
+  $ch = curl_init();
+  $GetNumberFrom = $_POST['GetNumberFrom'];
+  $mobNumber = $GetNumberFrom;
+  // $postFields = "To=%2B91'.$mobNumber.'&MessagingServiceSid=MG134cd6143ccbdeb0c63309fdc1f5be99&Body=opt%3A".$otpMessage;
+  // curl_setopt($ch, CURLOPT_URL, 'https://api.twilio.com/2010-04-01/Accounts/AC4f9a7304a9ef50736449b62a14c957b3/Messages.json');
+  // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+  // curl_setopt($ch, CURLOPT_HTTPHEADER, [
+  //     'Content-Type: application/x-www-form-urlencoded',
+  // ]);
+  // curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+  // curl_setopt($ch, CURLOPT_USERPWD, 'AC4f9a7304a9ef50736449b62a14c957b3:2fb4187b6ffb5e15b93cfecc2736366e');
+  // curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+  
+  // $response = curl_exec($ch);
+  
+  // to veify otp , store generated otp in session,
+  //in new OTP page get that otp from user and match it with otp in the session
+
+  curl_close($ch);
+  echo($postFields);
+  echo($otpMessage);
+  echo($otp);
+}
+
+?>
