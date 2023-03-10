@@ -1,13 +1,12 @@
 <?php
 if (!isset($_SESSION['user_name'])) {
 }
-
+include("/var/www/html/Grocery/html/Master/Nav.php");
 
 ?>
 <!DOCTYPE html>
 <html>
-
-<head>
+<head>	
 	<script>
 		window.onload = function () {
 			document.getElementById('preloader').style.display = "none";
@@ -15,7 +14,7 @@ if (!isset($_SESSION['user_name'])) {
 		}
 	</script>
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
-	<link rel="stylesheet" href="/var/www/html/Grocery/html/product-details/style.css">
+	<link rel="stylesheet" href="/Grocery/html/ProductDetails/style.css">
 	<meta cha set="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Grocery Store</title>
@@ -28,39 +27,31 @@ if (!isset($_SESSION['user_name'])) {
 			border-radius: 15px !important;
 			/* margin: 0px 10px !important; */
 		}
-
 		.slider {
 			width: 100%;
 			height: 100vh;
 			position: absolute;
 			top: 0;
 		}
-
 		#slideImg {
 			width: 100%;
 			height: 90vh;
 			animation: zoom 5s linear infinite;
 		}
-
 		@keyframes zoom {
 			0% {
 				transform: scale(1.2);
 			}
-
 			15% {
 				transform: scale(1);
 			}
-
 			85% {
 				transform: scale(1);
 			}
-
 			100% {
 				transform: scale(1.2);
 			}
-
 		}
-
 		.overlay {
 			width: 100%;
 			height: 100vh;
@@ -68,18 +59,15 @@ if (!isset($_SESSION['user_name'])) {
 			position: absolute;
 			top: 0;
 		}
-
 		.content1 {
 			width: 60%;
 			margin: 160px auto 0;
 			text-align: center;
 			color: #fff;
 		}
-
 		.content h1 {
 			font-size: 5rem;
 		}
-
 		.shop {
 			width: 200px;
 			padding: 15px 0;
@@ -92,16 +80,13 @@ if (!isset($_SESSION['user_name'])) {
 			color: #fff !important;
 			cursor: pointer;
 		}
-
 		.shop:hover {
 			/* background: ; */
 			border: 2px solid green;
 		}
-
 		.span {
 			color: var(--green);
 		}
-
 		.searchType {
 			width: 532px;
 			flex: 2 0 250px;
@@ -118,9 +103,7 @@ if (!isset($_SESSION['user_name'])) {
 			white-space: nowrap;
 			background: #fff;
 		}
-
 		.searchButton {
-
 			flex: 0 1;
 			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
@@ -130,10 +113,9 @@ if (!isset($_SESSION['user_name'])) {
 		}
 	</style>
 </head>
-
 <body onload="myFunction()">
 	<?php
-	include "html/master/nav.php";
+	include "/var/www/html/Grocery/html/Master/Nav.php";
 	$cartDetail = "SELECT * from cart ";
 	$productId = [];
 	$result = mysqli_query($con, $cartDetail);
@@ -141,7 +123,6 @@ if (!isset($_SESSION['user_name'])) {
 		$productId[$row['product_id']] = $row['product_id'];
 	}
 	?>
-
 	<br><br><br><br>
 	<div id="loading">
 		<!-- <img src="/Grocery/storage/image/loader.gif" alt=""> -->
@@ -150,9 +131,12 @@ if (!isset($_SESSION['user_name'])) {
 		<!-- <input type="search" id="search-box" placeholder="search" name="searchTerm"> -->
 		<!-- <label for="search-box" class="fa fa-search"></label> -->
 		<!-- <input type="submit" value="search" name="submit"> -->
-		<input aria-label="productSearch" autocomplete="off" type="text" id="productSearch" name="searchTerm"placeholder="Search for Products..." class="searchType" value="" style="width: 388px;margin-left: 74px;">
+		<input aria-label="productSearch" autocomplete="off" type="text" id="productSearch" name="searchTerm"
+			placeholder="Search for Products..." class="searchType" value="" style="width: 388px;margin-left: 74px;">
 		<button type="submit" name="submit" class="searchButton"><svg viewBox="0 0 20 20" height="15px">
-				<path d="M19.755 18.58l-4.808-4.808a8.423 8.423 0 1 0-1.18 1.179l4.808 4.804a.833.833 0 1 0 1.18-1.175zm-11.326-3.4a6.753 6.753 0 1 1 6.755-6.752 6.76 6.76 0 0 1-6.755 6.752zm0 0" fill="#fff" data-name="Layer 18"></path>
+				<path
+					d="M19.755 18.58l-4.808-4.808a8.423 8.423 0 1 0-1.18 1.179l4.808 4.804a.833.833 0 1 0 1.18-1.175zm-11.326-3.4a6.753 6.753 0 1 1 6.755-6.752 6.76 6.76 0 0 1-6.755 6.752zm0 0"
+					fill="#fff" data-name="Layer 18"></path>
 			</svg></button>
 		<!-- <button type="submit"  name="submit" class="btn btn-primary">Submit</button> -->
 	</form>
@@ -181,12 +165,11 @@ if (!isset($_SESSION['user_name'])) {
 							<th scope="row">
 								<div class="split left">
 									<div class="centered">
-
 										<div class="product" style="margin-left:106px;">
 											<div class="product-content" style="width:10%;">
 												<div class="product-img">
 													<h1>Products</h1>
-													<img src='/Grocery/storage/image<?php echo $row['featured_image']; ?>'
+													<img src='/Grocery/Storage/image<?php echo $row['featured_image']; ?>'
 														alt="product image">
 												</div>
 											</div>
@@ -198,7 +181,7 @@ if (!isset($_SESSION['user_name'])) {
 													<span><i class="fas fa-plus"></i></span>
 												</button>
 												<button type="button" class="btn-buy"> <a
-														href="/Grocery/html/payment/payment.php">buy now</a>
+														href="/Grocery/html/Payment/SelectPaymentOptions.php">buy now</a>
 													<span><i class="fas fa-shopping-cart"></i></span>
 												</button>
 											</div>
@@ -222,14 +205,13 @@ if (!isset($_SESSION['user_name'])) {
 												</p>
 											</div>
 											<!-- <--end of single product-->
-
 							<td>
 								<div class='box' style="border-radius: 50px;margin-left: 695px;">
 									<h1>Categories</h1>
 									<h1>looking for more products.... Click below for more
 										<?php echo $title ?>
 									</h1>
-									<img src="/Grocery/storage/image<?php echo $row['image'] ?>" style="width: 200px;">
+									<img src="/Grocery/Storage/image<?php echo $row['image'] ?>" style="width: 200px;">
 									<h3>
 										<?php echo $title ?>
 									</h3>
@@ -253,17 +235,14 @@ if (!isset($_SESSION['user_name'])) {
 			</tr>
 		</tbody>
 	</table>
-
 	<!--product -->
-
 	<!--Banner-->
 	<div class="title">
-	
 		<div class="row">
 			<div class="col-md-12" style="margin: 0px 5px;">
 				<div class="banner">
 					<div class="slider">
-						<img src="/Grocery/storage/image/pexels-carlo-martin-alcordo-2449665 (1).jpg" id="slideImg"
+						<img src="/Grocery/Storage/image/pexels-carlo-martin-alcordo-2449665 (1).jpg" id="slideImg"
 							alt="" srcset="">
 					</div>
 					<div class="overlay" style="">
@@ -277,7 +256,7 @@ if (!isset($_SESSION['user_name'])) {
 								items. There is usually a delivery charge for this service.</p>
 							<div style="margin-top: 40px;">
 								<button type="button" class="shop">
-									<a href="/Grocery/html/product-details/details.php" style="color:#fff">
+									<a href="/Grocery/html/ProductDetails/Details.php" style="color:#fff">
 										Shop Now
 									</a>
 								</button>
@@ -292,11 +271,11 @@ if (!isset($_SESSION['user_name'])) {
 	<script>
 		var slideImg = document.getElementById("slideImg");
 		var images = new Array(
-			"/Grocery/storage/image/pexels-carlo-martin-alcordo-2449665 (1).jpg",
-			"/Grocery/storage/image/pexels-rene-asmussen-3167310.jpg",
-			"/Grocery/storage/image/pexels-maria-orlova-4916298.jpg",
-			"/Grocery/storage/image/pexels-matheus-cenali-2733918.jpg",
-			"/Grocery/storage/image/pexels-viktoria-slowikowska-5677627.jpg"
+			"/Grocery/Storage/image/pexels-carlo-martin-alcordo-2449665 (1).jpg",
+			"/Grocery/Storage/image/pexels-rene-asmussen-3167310.jpg",
+			"/Grocery/Storage/image/pexels-maria-orlova-4916298.jpg",
+			"/Grocery/Storage/image/pexels-matheus-cenali-2733918.jpg",
+			"/Grocery/Storage/image/pexels-viktoria-slowikowska-5677627.jpg"
 		);
 		var len = images.length;
 		var i = 0;
@@ -327,14 +306,14 @@ if (!isset($_SESSION['user_name'])) {
 							$image = $row['image'];
 							?>
 							<div class='box' style=" border-radius: 50px;">
-								<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" alt='' srcset=''>
+								<img src="/Grocery/Storage/image/<?php echo $row['image'] ?>" alt='' srcset=''>
 								<h3>
 									<?php echo $name ?>
 								</h3>
 								<p>
 									<?php echo $description ?>
 								</p>
-								<a href='/Grocery/html/Read More/feature.php?feature=<?php echo $id; ?>' class='btn'
+								<a href='/Grocery/html/ReadMore/Feature.php?feature=<?php echo $id; ?>' class='btn'
 									name="submit">read more</a>
 							</div>
 							<?php
@@ -350,7 +329,7 @@ if (!isset($_SESSION['user_name'])) {
 	<!--Products Section-->
 	<section class="products" id="products">
 		<h1 class="heading"> our <span>products</span> </h1>
-		<a href='/Grocery/html/product-details/details.php' class='btn'
+		<a href='/Grocery/html/ProductDetails/Details.php' class='btn'
 			style="display:flex;float: right;margin-right: 25px;">show
 			more</a>
 		<!-- <div class="swiper product-slider"> -->
@@ -363,7 +342,6 @@ if (!isset($_SESSION['user_name'])) {
 					$product_id = $row['id'];
 					$code = $row['code'];
 					$product_category = $row['category'];
-
 					$product_title = $row['title'];
 					$product_price = $row['price'];
 					$description = $row['description'];
@@ -371,7 +349,7 @@ if (!isset($_SESSION['user_name'])) {
 					$quantity = $row['qty'];
 					?>
 					<div class='swiper-slide box' style=" border-radius: 50px;">
-						<img src="/Grocery/storage/image/<?php echo $row['featured_image'] ?>" />
+						<img src="/Grocery/Storage/image/<?php echo $row['featured_image'] ?>" />
 						<h1>
 							<?php echo $product_title ?>
 						</h1>
@@ -391,7 +369,7 @@ if (!isset($_SESSION['user_name'])) {
 							<i class='fa fa-star'></i>
 							<i class='fa fa-star-half'></i>
 							<br>
-							<form action="/Grocery/app/cart/add.php" method="POST">
+							<form action="/Grocery/App/Cart/Insert.php" method="POST">
 								<input type="hidden" name="productId" value="<?php echo $product_id; ?>">
 								<input type="hidden" name="quantity" value="1">
 								<?php
@@ -410,8 +388,8 @@ if (!isset($_SESSION['user_name'])) {
 								} else { ?>
 										<button type='submit' name="addCart" class="btn">Go to Cart</a <?php
 								}
-								?>
-							</form>
+								?> 
+								</form>
 						</div>
 					</div>
 					<?php
@@ -421,7 +399,6 @@ if (!isset($_SESSION['user_name'])) {
 		</div>
 	</section>
 	<!--Products Section-->
-
 	<!--Categories Section-->
 	<section class="categories" id="categories">
 		<h1 class="heading">product <span>categories</span> </h1>
@@ -436,14 +413,14 @@ if (!isset($_SESSION['user_name'])) {
 				$discount = $row['discount'];
 				?>
 				<div class="box" style=" border-radius: 50px;">
-					<img src="/Grocery/storage/image/<?php echo $row['image'] ?>" alt=''>
+					<img src="/Grocery/Storage/image/<?php echo $row['image'] ?>" alt=''>
 					<h3>
 						<?php echo $title ?>
 					</h3>
 					<p>Upto
 						<?php echo $discount ?>
 					</p>
-					<a href='/Grocery/categories_detail.php?category=<?php echo $id; ?>' class='btn'>View More</a>
+					<a href='/Grocery/html/CategoryDetail/CategoriesDetail.php?category=<?php echo $id; ?>' class='btn'>View More</a>
 				</div>
 				<?php
 			}
@@ -451,7 +428,6 @@ if (!isset($_SESSION['user_name'])) {
 		</div>
 	</section>
 	<!--Categories Section-->
-
 	<!--Review Section-->
 	<section class="review" id="review">
 		<h1 class="heading">Customer's <span>Review</span> </h1>
@@ -467,7 +443,7 @@ if (!isset($_SESSION['user_name'])) {
 					$name = $row['name'];
 					?>
 					<div class="swiper-slide box" style=" border-radius: 50px;">
-						<img src="/Grocery/storage/image/<?php echo $row['photo'] ?>" alt="">
+						<img src="/Grocery/Storage/image/<?php echo $row['photo'] ?>" alt="">
 						<p>
 							<?php echo $row['description'] ?>
 						</p>
@@ -503,7 +479,7 @@ if (!isset($_SESSION['user_name'])) {
 				$description = $row['description'];
 				?>
 				<div class="box" style=" border-radius: 50px;">
-					<img src="/Grocery/storage/image<?php echo $row['image'] ?>" alt="" srcset="">
+					<img src="/Grocery/Storage/image/<?php echo $row['image'] ?>" alt="" srcset="">
 					<div class="content">
 						<div class="icons">
 							<a href="#"><i class="fa fa-user"></i>By User</a>
@@ -524,15 +500,12 @@ if (!isset($_SESSION['user_name'])) {
 			}
 			?>
 		</div>
-
 	</section>
 	<!--Blog Section-->
-
 	<!--Footer Section-->
 	<?php
-	include('/var/www/html/Grocery/app/review/insert.php');
+	include('/var/www/html/Grocery/App/Review/Insert.php');
 	?>
-
 	<!--Footer Section-->
 
 

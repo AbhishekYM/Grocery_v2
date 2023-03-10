@@ -1,19 +1,24 @@
 <?php
-include('/var/www/html/Grocery/database/connection.php');
- include "/var/www/html/Grocery/app/master/nav.php";
+// include('/var/www/html/Grocery/Database/Connection.php');
+include_once '/var/www/html/Grocery/Database/DatabaseConnection.php';
+// Create a new instance of the DatabaseConnection class
+$db = new DatabaseConnection();
+// Get the mysqli connection object
+$con = $db->getConnection();
+ include "/var/www/html/Grocery/App/Master/Nav.php";
  error_reporting(0);
 session_start();
 if (!isset($_SESSION['name'])) {
-    header('location:/Grocery/html/Admin/login.php');
+    header('location:/Grocery/html/Admin/Login/Login.php');
 }
 ?>  
 <!DOCTYPE html>
-<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+==
 <html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
-    <!--<title> Responsiive Admin Dashboard | CodingLab </title>-->
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -30,7 +35,7 @@ if (!isset($_SESSION['name'])) {
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-                    <div class="box-topic"><a href="product.php" class="text" style="
+                    <div class="box-topic"><a href="/Grocery/html/Admin/Product/Product.php" class="text" style="
                             text-decoration: auto;color:black;
                         ">Product</a></div>
                     <div class="number">
@@ -50,7 +55,7 @@ if (!isset($_SESSION['name'])) {
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-                    <div class="box-topic"><a href="user.php" class="" style="
+                    <div class="box-topic"><a href="User.php" class="" style="
     text-decoration: auto;color:black;">Customer</a></div>
                     <div class="number"><?php echo $rowsselectCount['total']; ?></div>
                     <div class="indicator">
@@ -79,7 +84,7 @@ if (!isset($_SESSION['name'])) {
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-                    <div class="box-topic"><a href="categories.php" class="text" style="
+                    <div class="box-topic"><a href="/Grocery/html/Admin/Category/Categories.php" class="text" style="
     text-decoration: auto;color:black;
 ">Categories</a></div>
                     <div class="number">
@@ -99,7 +104,7 @@ if (!isset($_SESSION['name'])) {
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-                    <div class="box-topic"><a href="feature.php" class="text" style="
+                    <div class="box-topic"><a href="/Grocery/html/Admin/Feature/Feature.php" class="text" style="
     text-decoration: auto;color:black;
 ">Features</a></div>
                     <div class="number">
@@ -119,7 +124,7 @@ if (!isset($_SESSION['name'])) {
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-                    <div class="box-topic"><a href="review.php" class="text" style="
+                    <div class="box-topic"><a href="Review.php" class="text" style="
                         text-decoration: auto;color:black;
                     ">Reviews</a></div>
                     <div class="number">
@@ -139,7 +144,7 @@ if (!isset($_SESSION['name'])) {
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-                    <div class="box-topic"><a href="blog.php" class="text" style="
+                    <div class="box-topic"><a href="/Grocery/html/Admin/Blog/Blog.php" class="text" style="
                         text-decoration: auto; color:black;
                     ">Blogs</a></div>
                     <div class="number"><?php echo $rowsselectCount['total']; ?></div>
@@ -157,7 +162,7 @@ if (!isset($_SESSION['name'])) {
                     $execute = mysqli_query($con, $sql);
                     $rowsselectCount = mysqli_fetch_array($execute);
                     ?>
-                    <div class="box-topic"><a href="blog.php" class="text" style="
+                    <div class="box-topic"><a href="Blog.php" class="text" style="
                         text-decoration: auto; color:black;
                     ">Blogs</a></div>
                     <div class="number"><?php echo $rowsselectCount['total']; ?></div>

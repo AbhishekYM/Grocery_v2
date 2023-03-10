@@ -1,3 +1,5 @@
+
+
 let searchForm = document.querySelector('.search-form');
 document.querySelector('#search-btn').onclick = () => {
     searchForm.classList.toggle('active');
@@ -28,9 +30,7 @@ let navbar = document.querySelector('.navbar');
 document.querySelector('#menu-btn').onclick = () => {
     console.log("keval")
     navbar.classList.toggle('active');
-}
-
-
+} 
 // bind cart data from DB 
 // <div class="shopping-cart active">
 /*
